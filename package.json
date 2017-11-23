@@ -1,0 +1,12 @@
+{
+  "name": "elefantenjagtverein.de",
+  "version": "v1.0",
+  "private": true,
+  "dependencies": {
+    "jquery": "jquery/jquery-dist#1.9.1 - 3",
+    "jquery-countimator": "benignware/jquery-countimator"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
+  }
+}

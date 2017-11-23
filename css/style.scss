@@ -1,0 +1,72 @@
+$progress_time: 5s;
+@import "components/progress";
+@import "components/elephant";
+
+body, .container {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: Inconsolata-Regular, monospace;
+  overflow: hidden;
+}
+
+.container {
+  padding: 50px;
+}
+
+
+.counter-wheel {
+  overflow: hidden;
+  float:right;
+  width:8em;
+  height:8em;
+  margin: 10px;
+  .counter-wheel-content {
+    font-size: 15px;
+  }
+}
+.counter-wheel {
+  color: teal;
+}
+
+@font-face {
+  font-family: 'Inconsolata-Regular';
+  src: url('../fonts/Inconsolata-Regular.eot');
+  src: url('../fonts/Inconsolata-Regular.woff') format('woff'),
+  url('../fonts/Inconsolata-Regular.ttf') format('truetype'),
+  url('../fonts/Inconsolata-Regular.svg#Inconsolata-Regular') format('svg'),
+  url('../fonts/Inconsolata-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: '../fonts/Inconsolata-Bold';
+  src: url('../fonts/Inconsolata-Bold.eot');
+  src: url('../fonts/Inconsolata-Bold.woff') format('woff'),
+  url('../fonts/Inconsolata-Bold.ttf') format('truetype'),
+  url('../fonts/Inconsolata-Bold.svg#Inconsolata-Bold') format('svg'),
+  url('../fonts/Inconsolata-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+a {
+  color: #ffffff;
+  &:hover {
+    color: #d3d3d3;
+  }
+}
+
+.claim {
+  text-align: left;
+
+  h1 {
+    font-size:55px;
+  }
+}
+
+@media (min-width: 640px) {
+  .visible-xs {
+    display:none;
+  }
+}

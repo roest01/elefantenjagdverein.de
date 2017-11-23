@@ -1,0 +1,20 @@
+pipelines:
+  branches:
+    release/*:
+      - step:
+          script:
+            - docker login $AMC_REGISTRY --username $AMC_REGISTRY_USERNAME --password $AMC_REGISTRY_PASSWORD
+            - docker build -t elefantenjagdverein .
+            - docker tag elefantenjagdverein registry.amicaldo.net:5000/amicaldo/elefantenjagdverein:${BITBUCKET_BRANCH/release\//}
+            - docker push registry.amicaldo.net:5000/amicaldo/elefantenjagdverein:${BITBUCKET_BRANCH/release\//}
+    master:
+      - step:
+          script:
+            - docker login $AMC_REGISTRY --username $AMC_REGISTRY_USERNAME --password $AMC_REGISTRY_PASSWORD
+            - docker build -t elefantenjagdverein .
+            - docker tag elefantenjagdverein registry.amicaldo.net:5000/amicaldo/elefantenjagdverein:stable
+            - docker push registry.amicaldo.net:5000/amicaldo/elefantenjagdverein:stable
+            - docker tag elefantenjagdverein registry.amicaldo.net:5000/amicaldo/elefantenjagdverein:latest
+            - docker push registry.amicaldo.net:5000/amicaldo/elefantenjagdverein:latest
+options:
+  docker: true

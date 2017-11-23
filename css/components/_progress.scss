@@ -1,0 +1,26 @@
+
+/* Expand */
+
+.expand-container {
+  background-color: #ffffff;
+  height:3px;
+  .expand {
+    width:100%;
+    height:1px;
+    margin:2px 0;
+    background:#2187e7;
+    position:absolute;
+    box-shadow:0 0 10px 1px rgba(0,198,255,0.7);
+    -moz-animation:fullexpand $progress_time linear infinite;
+    -webkit-animation:fullexpand $progress_time  linear infinite;
+  }
+}
+
+
+@keyframes fullexpand {
+  0%  { width:0;}
+  100%{ width:130%;}
+}
+
+
+//shot on elephant -> mouseover -> target icon
