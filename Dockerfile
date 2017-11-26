@@ -30,7 +30,10 @@ ADD ./config/vhost.conf /etc/nginx/conf.d/default.conf
 ADD ./ /var/www/html/
 
 # install bower dependencies
-RUN npm install -g yarn && cd /var/www/html/ && yarn install
+RUN npm install -g yarn handlebars && cd /var/www/html/ && yarn install
+
+# precompile elephant templates
+RUN cd /var/www/html/ && handlebars elephants/*.hbs -f elephants/elephants.tpl.js
 
 EXPOSE 80
 EXPOSE 443

@@ -23,10 +23,31 @@ $shadow-color: rgba(74, 74, 74, 0.53);  //Set rgba for color opacity
     &.speed#{$speed} {
       animation: ele-movement 1s infinite linear, ele-ahead $progress_time * $speed infinite linear;
 
-      &.shot {
+      &.shot.ka-rebound {
         animation: ele-movement 1s infinite linear, ele-ahead $progress_time * $speed infinite linear, shot-animation 3s cubic-bezier(0.2, -0.55, 0.91, 0.94) forwards !important;
         transform-origin: 0 100%
       }
+      &.shot.ka-crash {
+        animation: ele-movement 1s infinite linear, ele-ahead $progress_time * $speed infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
+        transform-origin: 0 100%
+      }
+    }
+  }
+
+  img {
+    user-select: none;
+  }
+
+  &.default {
+    img {
+      margin-bottom: -25px;
+    }
+  }
+  &.benjamin {
+    img {
+      width: 250px;
+      margin-top: -300px;
+      animation: shake 2.5s cubic-bezier(.36,.07,.19,.97) both infinite;
     }
   }
 
@@ -594,5 +615,19 @@ div[class^="ele-leg-"] {
   }
   100% {
     height: 18px;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(-5deg);
   }
 }

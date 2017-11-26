@@ -70,3 +70,13 @@ a {
     display:none;
   }
 }
+
+@media (max-width: 840px) {
+  .claim h1 {
+    font-size: 5vw;
+  }
+  .ele-wrapper {
+    zoom: 0.8;
+    top:60%;
+  }
+}
