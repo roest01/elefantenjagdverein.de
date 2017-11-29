@@ -34,7 +34,7 @@ ADD ./ /var/www/html/
 RUN npm install -g yarn handlebars && cd /var/www/html/ && yarn install
 
 # precompile elephant templates
-RUN cd /var/www/html/ && handlebars elephants/*.hbs -f elephants/elephants.tpl.js
+RUN cd /var/www/html/ && handlebars elephants/*/*.hbs -f elephants/elephants.tpl.js
 
 EXPOSE 80
 EXPOSE 443
