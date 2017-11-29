@@ -26,6 +26,9 @@
   position: relative;
   width: 100%; }
 
+body.pause .ele-wrapper {
+  animation-play-state: paused !important; }
+
 .ele-wrapper.speed1 {
   animation: ele-movement 1s infinite linear, ele-ahead 5s infinite linear; }
   .ele-wrapper.speed1.shot.ka-rebound {
@@ -477,21 +480,30 @@ div[class^="ele-leg-"] {
     transform: rotate(5deg); }
   100% {
     transform: rotate(-5deg); } }
-body, .container {
+body, .claim-container {
   background-color: #000000;
   color: #ffffff;
   font-family: Inconsolata-Regular, monospace;
   overflow: hidden; }
 
-.container {
+.claim-container {
   padding: 50px; }
+
+.leaderboard {
+  margin-top: 5px;
+  float: right;
+  width: 15rem;
+  color: #d3d3d3; }
+  .leaderboard .card-title {
+    text-align: center;
+    color: #000000; }
 
 .counter-wheel {
   overflow: hidden;
-  float: right;
+  margin: 0 auto;
+  margin-top: 10px;
   width: 8em;
-  height: 8em;
-  margin: 10px; }
+  height: 8em; }
   .counter-wheel .counter-wheel-content {
     font-size: 15px; }
 
@@ -528,6 +540,7 @@ a {
     font-size: 5vw; }
 
   .ele-wrapper {
-    zoom: 0.8; } }
+    zoom: 0.8;
+    top: 60%; } }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,17 +1,17 @@
-var elephantHandle;
+let elephantHandle;
+
 
 jQuery(document).ready(function(){
-    var elephantManager = new elephantManagerClass();
-
-    jQuery( ".ele-wrapper" ).on( "click", function() {
-        elephantManager.killElephant(jQuery(this));
-    });
+    let socketManager = new socketManagerClass();
+    let elephantManager = new elephantManagerClass(socketManager);
+    elephantManager._construct(); //go go go
 });
 
-var elephantManagerClass = function(){
-    var elephantManager = this;
-    var maximumElephants = 7; //same time
-    var helper = new helperClass();
+let elephantManagerClass = function(server){
+    let elephantManager = this;
+    let gamePause = false;
+    let maximumElephants = 7; //same time
+    let helper = new helperClass();
 
     elephantManager.templateStorage = ["default", "benjamin"];
     elephantManager.alive = {
@@ -23,25 +23,33 @@ var elephantManagerClass = function(){
     elephantManager.killedElephants = 0;
     elephantManager.deadBodies = [];
 
+    elephantManager._construct = function(){
+        server.connect().then(function(){
+            elephantManager.startGame();
+        });
+    };
+
+    elephantManager.startGame = function(){
+        jQuery( ".ele-wrapper" ).on( "click", function() {
+            elephantManager.killElephant(jQuery(this));
+        });
+    };
+
     elephantManager.killElephant = function(elephant){
         if (elephant.hasClass("alive")){
             elephant.removeClass("alive").addClass("shot");
 
-            var id = elephant.attr('id');
+            let id = elephant.attr('id');
             if (!!elephantManager.alive[id]){
-                var elephantInformations = elephantManager.alive[id];
+                let elephantInformations = elephantManager.alive[id];
                 elephantInformations.classes = elephant.attr('class');
                 elephantManager.deadBodies.push(elephantInformations);
                 delete elephantManager.alive[id];
-
                 elephantManager.killedElephants++;
-                var countimator = jQuery('.counter-wheel');
-                countimator.countimator({
-                    value: elephantManager.killedElephants,
-                    complete: function(){
-                        jQuery(".counter-wheel-highlight").attr('d', '');
-                    }
-                });
+
+                server.killedElephant(elephantInformations);
+
+                elephantManager.handleKill();
             } else {
                 console.info("elephant "+id+" was never alive");
             }
@@ -52,6 +60,50 @@ var elephantManagerClass = function(){
                     elephantManager.generateElephant();
                 });
             }, 3000);
+        }
+    };
+
+    elephantManager.handleKill = function(){
+        let countimator = jQuery('.counter-wheel');
+        countimator.countimator({
+            value: elephantManager.killedElephants,
+            complete: function(){
+                jQuery(".counter-wheel-highlight").attr('d', '');
+            }
+        });
+
+        switch(elephantManager.killedElephants) {
+            case 1:
+
+                break;
+            case 3:
+                elephantManager.pause();
+                swal({
+                    title: "Eure Lordschaft hat <br />"+elephantManager.killedElephants +" Elefanten getötet.",
+                    html: "Dürfte ich ergebenst darum bitten, den Namen eurer Lordschaft zu erfahren um eure Lordschaft auf unserer <br /> 'Tafel der Ewigkeit' zu notieren.",
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Mein Name sei dein',
+                    cancelButtonText: 'Nein!',
+                    showLoaderOnConfirm: true,
+                    preConfirm: function (name)  {
+                        return new Promise(function (resolve) {
+                            if (name === '') {
+                                swal.showValidationError(
+                                    'Eure Lorschaft möge den Namen nicht leer lassen'
+                                )
+                            }
+                            resolve()
+                        })
+                    },
+                    allowOutsideClick: true
+                }).then(function(result) {
+                    elephantManager.resume();
+                    if (result.value) {
+                        console.log("result",result);
+                    }
+                });
+                break;
         }
     };
 
@@ -67,10 +119,10 @@ var elephantManagerClass = function(){
     };
 
     elephantManager.getElephant = function(speed){
-        var templateStorage = elephantManager.templateStorage.slice(0); //slice to prevent reference
+        let templateStorage = elephantManager.templateStorage.slice(0); //slice to prevent reference
         templateStorage = elephantManager.filterAllowed(templateStorage);
-        var templateName = templateStorage[Math.floor(Math.random()*templateStorage.length)];
-        var template = Handlebars.templates[templateName+".hbs"];
+        let templateName = templateStorage[Math.floor(Math.random()*templateStorage.length)];
+        let template = Handlebars.templates[templateName+".hbs"];
         return {
             type: templateName,
             template: template({speed: speed})
@@ -81,14 +133,14 @@ var elephantManagerClass = function(){
      * @public
      */
     elephantManager.generateElephant = function(){
-        var elephantManager = this;
-        var container = jQuery('.ele-container');
+        let elephantManager = this;
+        let container = jQuery('.ele-container');
         window.clearTimeout(elephantHandle);
 
-        if (helper.size(elephantManager.alive) < maximumElephants){
-            var randomSpeed = elephantManager.getRandomInt(1,5);
-            var elephant = elephantManager.getElephant(randomSpeed);
-            var id = elephantManager.getUniqueIdForElephant(elephant);
+        if (helper.size(elephantManager.alive) < maximumElephants && !gamePause){
+            let randomSpeed = elephantManager.getRandomInt(1,5);
+            let elephant = elephantManager.getElephant(randomSpeed);
+            let id = elephantManager.getUniqueIdForElephant(elephant);
 
             elephantManager.alive[id] = {
                 ID: id,
@@ -101,11 +153,21 @@ var elephantManagerClass = function(){
                 elephantManager.killElephant(jQuery(this));
             });
 
-            var newElephantIn = elephantManager.getRandomInt(5,20) * 1123; //microtime
+            let newElephantIn = elephantManager.getRandomInt(5,20) * 1123; //microtime
             elephantHandle = window.setTimeout(function(){
                 elephantManager.generateElephant();
             }, newElephantIn);
         }
+    };
+
+    elephantManager.pause = function(){
+        jQuery("body").addClass("pause");
+        gamePause = true;
+    };
+
+    elephantManager.resume = function(){
+        jQuery("body").removeClass("pause");
+        gamePause = false;
     };
 
     elephantManager.getUniqueIdForElephant = function(elephant){

@@ -2,24 +2,35 @@ $progress_time: 5s;
 @import "components/progress";
 @import "components/elephant";
 
-body, .container {
+body, .claim-container {
   background-color: #000000;
   color: #ffffff;
   font-family: Inconsolata-Regular, monospace;
   overflow: hidden;
 }
 
-.container {
+.claim-container {
   padding: 50px;
 }
 
+.leaderboard {
+  margin-top: 5px;
+  float:right;
+  width: 15rem;
+
+  color: #d3d3d3;
+  .card-title {
+    text-align: center;
+    color: #000000;
+  }
+}
 
 .counter-wheel {
   overflow: hidden;
-  float:right;
+  margin: 0 auto;
+  margin-top: 10px;
   width:8em;
   height:8em;
-  margin: 10px;
   .counter-wheel-content {
     font-size: 15px;
   }

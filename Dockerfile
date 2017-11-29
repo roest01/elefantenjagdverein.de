@@ -8,7 +8,8 @@ RUN apk update && apk add \
   bash \
   nodejs \
   nodejs-npm \
-  nginx
+  nginx \
+  redis
 
 
 # remove default content

@@ -18,6 +18,10 @@ $shadow-color: rgba(74, 74, 74, 0.53);  //Set rgba for color opacity
   width: 100%;
 }
 
+body.pause .ele-wrapper {
+  animation-play-state: paused!important;
+}
+
 .ele-wrapper {
   @each $speed in 1, 2, 3, 4, 5 {
     &.speed#{$speed} {
