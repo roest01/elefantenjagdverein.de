@@ -13,24 +13,55 @@ let elephantManagerClass = function(server){
     let maximumElephants = 7; //same time
     let helper = new helperClass();
 
-    elephantManager.templateStorage = ["default", "benjamin"];
+    elephantManager.elephants = {};
     elephantManager.alive = {
         starter: {
             id: "starter",
-            type: "default"
+            name: "default"
         }
     };
     elephantManager.killedElephants = 0;
     elephantManager.deadBodies = [];
 
+
     elephantManager._construct = function(){
-        server.connect().then(function(){
+        elephantManager.loadEleModules().then(function(elephants){
+            elephantManager.elephants = elephants;
             elephantManager.startGame();
+            //server.connect().then(function(){ //@todo implement Server
+            //    elephantManager.startGame();
+            //});
+        });
+    };
+
+    elephantManager.loadEleModules = function(){
+        let eleFolder = "elephants/";
+        return new Promise(function(resolve, reject){
+            let elephants = {};
+            jQuery.getJSON(eleFolder+'elephants.json', function(activeElephants){
+                jQuery.each(activeElephants, function(index, elephantName){
+                    jQuery.getJSON(eleFolder+elephantName+"/"+elephantName+".json", function(config){
+                        jQuery.extend(config, {
+                            name:  elephantName,
+                            template: Handlebars.templates[elephantName+".hbs"]
+                        });
+                        elephants[elephantName] = config;
+
+                        if (index === (activeElephants.length - 1)){
+                            resolve(elephants);
+                        }
+                    });
+                });
+            });
         });
     };
 
     elephantManager.startGame = function(){
-        jQuery( ".ele-wrapper" ).on( "click", function() {
+        console.log("#### StartGame ###");
+
+        let firstElephant = jQuery( ".ele-wrapper" );
+        firstElephant.addClass("killable");
+        firstElephant.on( "click", function() {
             elephantManager.killElephant(jQuery(this));
         });
     };
@@ -47,7 +78,9 @@ let elephantManagerClass = function(server){
                 delete elephantManager.alive[id];
                 elephantManager.killedElephants++;
 
-                server.killedElephant(elephantInformations);
+                if (server.connected){
+                    server.killedElephant(elephantInformations);
+                }
 
                 elephantManager.handleKill();
             } else {
@@ -99,7 +132,7 @@ let elephantManagerClass = function(server){
                     allowOutsideClick: true
                 }).then(function(result) {
                     elephantManager.resume();
-                    if (result.value) {
+                    if (result.value) { //@todo push to server
                         console.log("result",result);
                     }
                 });
@@ -107,26 +140,49 @@ let elephantManagerClass = function(server){
         }
     };
 
-    elephantManager.filterAllowed = function(templateStorage){
-        if(helper.size(elephantManager.alive) > 0){
+    elephantManager.filterAllowed = function(elephants){
+        if(helper.objectSize(elephantManager.alive) > 0){
+            let aLiveCounts = {};
             jQuery.each(elephantManager.alive, function(id, elephant){
-                if (elephant.type === "benjamin"){
-                    templateStorage = helper.removeArrayElement("benjamin", templateStorage);
+                if (!aLiveCounts[elephant.name]){ //calculate actual state
+                    aLiveCounts[elephant.name] = 0;
+                }
+                aLiveCounts[elephant.name]++;
+            });
+
+            jQuery.each(aLiveCounts, function(aLiveName, aLiveCount){
+                //remove elephants when active elephants (aLiveCount) breaks with config allowedAtSameTime
+                if (!!elephants[aLiveName] && !!elephants[aLiveName].allowedAtSameTime){
+                    let allowedAtSameTime = elephants[aLiveName].allowedAtSameTime;
+
+                    if (allowedAtSameTime > 0 && aLiveCount >= allowedAtSameTime){
+                        delete elephants[aLiveName];
+                    }
                 }
             });
         }
-        return templateStorage;
+
+        return elephants;
     };
 
+    /**
+     *
+     * @param speed
+     * @returns {Object} Elephant Object
+     */
     elephantManager.getElephant = function(speed){
-        let templateStorage = elephantManager.templateStorage.slice(0); //slice to prevent reference
-        templateStorage = elephantManager.filterAllowed(templateStorage);
-        let templateName = templateStorage[Math.floor(Math.random()*templateStorage.length)];
-        let template = Handlebars.templates[templateName+".hbs"];
-        return {
-            type: templateName,
-            template: template({speed: speed})
-        };
+        let elephants = jQuery.extend(true, {}, elephantManager.elephants); // prevent reference
+        elephants = elephantManager.filterAllowed(elephants);
+
+        let elevantNames = Object.keys(elephants);
+        let randomElephantAttr = elevantNames[Math.floor(Math.random()*elevantNames.length)];
+        let singleElephant = elephants[randomElephantAttr];
+
+        singleElephant.compiled = singleElephant.template({
+            eleFolder: "elephants/"+singleElephant.name+"/",
+            speed: speed
+        });
+        return singleElephant;
     };
 
     /**
@@ -137,17 +193,17 @@ let elephantManagerClass = function(server){
         let container = jQuery('.ele-container');
         window.clearTimeout(elephantHandle);
 
-        if (helper.size(elephantManager.alive) < maximumElephants && !gamePause){
+        if (helper.objectSize(elephantManager.alive) < maximumElephants && !gamePause){
             let randomSpeed = elephantManager.getRandomInt(1,5);
             let elephant = elephantManager.getElephant(randomSpeed);
             let id = elephantManager.getUniqueIdForElephant(elephant);
 
             elephantManager.alive[id] = {
                 ID: id,
-                type: elephant.type
+                name: elephant.name
             };
 
-            container.append(jQuery(elephant.template).attr('id', id));
+            container.append(jQuery(elephant.compiled).attr('id', id));
 
             jQuery("#"+id).click(function(){
                 elephantManager.killElephant(jQuery(this));
@@ -171,7 +227,7 @@ let elephantManagerClass = function(server){
     };
 
     elephantManager.getUniqueIdForElephant = function(elephant){
-        return md5(elephant.template+Date.now());
+        return md5(elephant.compiled+Date.now());
     };
 
     elephantManager.getRandomInt = function(from,to){

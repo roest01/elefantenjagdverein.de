@@ -99,8 +99,9 @@ body.pause .ele-wrapper {
   position: absolute;
   top: 50%;
   transform: translate3D(-50%, -75%, 0);
-  width: 200px;
-  cursor: url("../img/target.png"), auto; }
+  width: 200px; }
+  .ele-wrapper.killable {
+    cursor: url("../img/target.png"), auto; }
   .ele-wrapper:target {
     animation: none; }
 
