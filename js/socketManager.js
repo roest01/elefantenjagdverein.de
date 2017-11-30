@@ -10,15 +10,26 @@ let socketManagerClass = function(){
     };
 
     socketManager.connect = function(){
-        socketManager.serverConnection = io.connect('http://localhost:3000');
+        serverConnection = io('http://localhost:3000', {
+            path: '/eleServer'
+        });
         return new Promise(function(resolve, reject) {
-            serverConnection.on('connected', function(client) {
-                console.log("(SM): got client.id", client.id, "starting game");
-                socketManager.user.id = client.id;
+            serverConnection.on('connected', function(clientInfo) {
+                console.log("(SM): got clientInfo.id", clientInfo.id, "starting game");
+                socketManager.user.id = clientInfo.id;
                 socketManager.connected = true;
                 resolve();
             });
 
+        });
+    };
+
+    socketManager.getElephantModules = function(){
+        return new Promise(function(resolve, reject){
+            serverConnection.emit("request eleModules", {}, function(eleModules){
+                console.log("gotEleModules", eleModules);
+                resolve(eleModules);
+            })
         });
     };
 
@@ -27,5 +38,9 @@ let socketManagerClass = function(){
             info: elephantInformations,
             user: socketManager.user
         });
+    };
+
+    socketManager.registerWithNickname = function(nickname){
+        serverConnection.emit('set nickname', nickname);
     };
 };

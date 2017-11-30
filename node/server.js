@@ -1,13 +1,17 @@
 // Let’s make node/socketio listen on port 3000
-let io = require('socket.io').listen(3000);
+let io = require('socket.io')(3000, {
+    path: '/eleServer'
+});
+
 let Tie_Leaderboard = require('agoragames-leaderboard/lib/tie_ranking_leaderboard.js');
 let hunterLeaderboard = new Tie_Leaderboard("hunterLeaderboard");
 
-console.log(hunterLeaderboard);
+let eleServerJS = require('./eleServer.js');
+let eleServer = new eleServerJS.EleServerClass();
 
 // Define/initialize our global vars
-let notes = [];
 let socketCount = 0;
+let clientInfo = {};
 
 io.sockets.on('connection', function(client) {
     // Socket has connected, increase socket count
@@ -15,9 +19,8 @@ io.sockets.on('connection', function(client) {
     // Let all sockets know how many are connected
     io.sockets.emit('users connected', socketCount);
     console.log("client connected", client.id);
-    client.emit("connected", {
-        id: client.id
-    });
+    clientInfo.id = client.id;
+    client.emit("connected", clientInfo);
 
     client.on('disconnect', function () {
         // Decrease the socket count on a disconnect, emit
@@ -37,7 +40,7 @@ io.sockets.on('connection', function(client) {
                 memberScore = 0;
             }
 
-            memberScore += kill.info.points;
+            memberScore += eleServer.getPointsByElephant(kill.info.name);
             console.log("new score", memberScore);
 
             hunterLeaderboard.rankMember(user.id, memberScore, kill.user, function(){
@@ -48,6 +51,17 @@ io.sockets.on('connection', function(client) {
                 });
             });
         });
+    });
+
+    client.on('request eleModules', function(input, callback){
+        eleServer.loadEleModules().then(function(eleModules){
+            callback(eleModules);
+        });
+    });
+
+    client.on('set nickname', function(nickname){
+       clientInfo.nickname = nickname;
+       //@todo publish to clients
     });
 
 });

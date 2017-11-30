@@ -25,12 +25,11 @@ let elephantManagerClass = function(server){
 
 
     elephantManager._construct = function(){
-        elephantManager.loadEleModules().then(function(elephants){
-            elephantManager.elephants = elephants;
-            elephantManager.startGame();
-            //server.connect().then(function(){ //@todo implement Server
-            //    elephantManager.startGame();
-            //});
+        server.connect().then(function(){
+            server.getElephantModules().then(function(elephants){
+                elephantManager.elephants = elephants;
+                //elephantManager.startGame();
+            });
         });
     };
 
@@ -96,6 +95,10 @@ let elephantManagerClass = function(server){
         }
     };
 
+    /**
+     * - update kill count (visual)
+     * - ask for username
+     */
     elephantManager.handleKill = function(){
         let countimator = jQuery('.counter-wheel');
         countimator.countimator({
@@ -130,11 +133,9 @@ let elephantManagerClass = function(server){
                         })
                     },
                     allowOutsideClick: true
-                }).then(function(result) {
+                }).then(function(input) {
+                    serverConnection.registerWithNickname(input.value);
                     elephantManager.resume();
-                    if (result.value) { //@todo push to server
-                        console.log("result",result);
-                    }
                 });
                 break;
         }
@@ -142,7 +143,7 @@ let elephantManagerClass = function(server){
 
     elephantManager.filterAllowed = function(elephants){
         if(helper.objectSize(elephantManager.alive) > 0){
-            let aLiveCounts = {};
+            const aLiveCounts = {};
             jQuery.each(elephantManager.alive, function(id, elephant){
                 if (!aLiveCounts[elephant.name]){ //calculate actual state
                     aLiveCounts[elephant.name] = 0;
@@ -194,7 +195,7 @@ let elephantManagerClass = function(server){
         window.clearTimeout(elephantHandle);
 
         if (helper.objectSize(elephantManager.alive) < maximumElephants && !gamePause){
-            let randomSpeed = elephantManager.getRandomInt(1,5);
+            let randomSpeed = helper.getRandomInt(1,5);
             let elephant = elephantManager.getElephant(randomSpeed);
             let id = elephantManager.getUniqueIdForElephant(elephant);
 
@@ -209,7 +210,7 @@ let elephantManagerClass = function(server){
                 elephantManager.killElephant(jQuery(this));
             });
 
-            let newElephantIn = elephantManager.getRandomInt(5,20) * 1123; //microtime
+            let newElephantIn = helper.getRandomInt(5,20) * 1123; //microtime
             elephantHandle = window.setTimeout(function(){
                 elephantManager.generateElephant();
             }, newElephantIn);
@@ -228,9 +229,5 @@ let elephantManagerClass = function(server){
 
     elephantManager.getUniqueIdForElephant = function(elephant){
         return md5(elephant.compiled+Date.now());
-    };
-
-    elephantManager.getRandomInt = function(from,to){
-        return Math.floor(Math.random() * to) + from;
     };
 };

@@ -24,4 +24,8 @@ let helperClass = function(){
         }
         return fromArray;
     };
+
+    helper.getRandomInt = function(from,to){
+        return Math.floor(Math.random() * to) + from;
+    };
 };
