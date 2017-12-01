@@ -36,7 +36,10 @@ body.pause .ele-wrapper {
     transform-origin: 0 100%; }
   .ele-wrapper.speed1.shot.ka-crash {
     animation: ele-movement 1s infinite linear, ele-ahead 5s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
-    transform-origin: 0 100%; }
+    top: 50%; }
+  .ele-wrapper.speed1.shot.ka-rotate {
+    animation: ele-movement 1s infinite linear, ele-ahead 5s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important;
+    top: 0; }
 .ele-wrapper.speed2 {
   animation: ele-movement 1s infinite linear, ele-ahead 10s infinite linear; }
   .ele-wrapper.speed2.shot.ka-rebound {
@@ -44,7 +47,10 @@ body.pause .ele-wrapper {
     transform-origin: 0 100%; }
   .ele-wrapper.speed2.shot.ka-crash {
     animation: ele-movement 1s infinite linear, ele-ahead 10s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
-    transform-origin: 0 100%; }
+    top: 50%; }
+  .ele-wrapper.speed2.shot.ka-rotate {
+    animation: ele-movement 1s infinite linear, ele-ahead 10s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important;
+    top: 0; }
 .ele-wrapper.speed3 {
   animation: ele-movement 1s infinite linear, ele-ahead 15s infinite linear; }
   .ele-wrapper.speed3.shot.ka-rebound {
@@ -52,7 +58,10 @@ body.pause .ele-wrapper {
     transform-origin: 0 100%; }
   .ele-wrapper.speed3.shot.ka-crash {
     animation: ele-movement 1s infinite linear, ele-ahead 15s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
-    transform-origin: 0 100%; }
+    top: 50%; }
+  .ele-wrapper.speed3.shot.ka-rotate {
+    animation: ele-movement 1s infinite linear, ele-ahead 15s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important;
+    top: 0; }
 .ele-wrapper.speed4 {
   animation: ele-movement 1s infinite linear, ele-ahead 20s infinite linear; }
   .ele-wrapper.speed4.shot.ka-rebound {
@@ -60,7 +69,10 @@ body.pause .ele-wrapper {
     transform-origin: 0 100%; }
   .ele-wrapper.speed4.shot.ka-crash {
     animation: ele-movement 1s infinite linear, ele-ahead 20s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
-    transform-origin: 0 100%; }
+    top: 50%; }
+  .ele-wrapper.speed4.shot.ka-rotate {
+    animation: ele-movement 1s infinite linear, ele-ahead 20s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important;
+    top: 0; }
 .ele-wrapper.speed5 {
   animation: ele-movement 1s infinite linear, ele-ahead 25s infinite linear; }
   .ele-wrapper.speed5.shot.ka-rebound {
@@ -68,15 +80,14 @@ body.pause .ele-wrapper {
     transform-origin: 0 100%; }
   .ele-wrapper.speed5.shot.ka-crash {
     animation: ele-movement 1s infinite linear, ele-ahead 25s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
-    transform-origin: 0 100%; }
+    top: 50%; }
+  .ele-wrapper.speed5.shot.ka-rotate {
+    animation: ele-movement 1s infinite linear, ele-ahead 25s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important;
+    top: 0; }
 .ele-wrapper img {
   user-select: none; }
 .ele-wrapper.default img {
   margin-bottom: -25px; }
-.ele-wrapper.benjamin img {
-  width: 250px;
-  margin-top: -300px;
-  animation: shake 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite; }
 .ele-wrapper.animated .ele-body {
   animation: body-movement 1s infinite cubic-bezier(0.63, 0.15, 0.49, 0.93); }
 .ele-wrapper.animated .ele-tail {
@@ -394,6 +405,31 @@ div[class^="ele-leg-"] {
   100% {
     opacity: 0;
     transform: translate(150px, 800px) rotateZ(360deg); } }
+@keyframes shot-rotation {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg); }
+  10% {
+    transform: rotate(360deg); }
+  20% {
+    transform: rotate(0deg); }
+  30% {
+    transform: rotate(360deg); }
+  40% {
+    transform: rotate(0deg); }
+  50% {
+    transform: rotate(360deg); }
+  60% {
+    transform: rotate(0deg); }
+  70% {
+    transform: rotate(360deg); }
+  80% {
+    transform: rotate(0deg); }
+  90% {
+    transform: rotate(360deg); }
+  100% {
+    opacity: 0;
+    transform: rotate(0deg); } }
 @keyframes eyes-blink {
   0% {
     height: 10px; }
@@ -474,6 +510,25 @@ div[class^="ele-leg-"] {
     height: 20px; }
   100% {
     height: 18px; } }
+.lia {
+  width: auto; }
+  .lia img {
+    width: 200px;
+    animation: ele-jump 1s infinite cubic-bezier(0, 0.31, 1, 1); }
+
+@keyframes ele-jump {
+  0% {
+    transform: rotate(0deg); }
+  50% {
+    transform: rotate(19deg);
+    margin-bottom: 10px; }
+  100% {
+    transform: rotate(0deg); } }
+.benjamin img {
+  width: 250px;
+  margin-top: -300px;
+  animation: shake 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite; }
+
 @keyframes shake {
   0% {
     transform: rotate(-5deg); }

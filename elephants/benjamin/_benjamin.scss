@@ -1,0 +1,21 @@
+.benjamin {
+  img {
+    width: 250px;
+    margin-top: -300px;
+    animation: shake 2.5s cubic-bezier(.36,.07,.19,.97) both infinite;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(-5deg);
+  }
+}

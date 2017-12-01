@@ -1,0 +1,22 @@
+.lia {
+  width:auto;
+  img {
+    width: 200px;
+    animation: ele-jump 1s infinite cubic-bezier(0, 0.31, 1, 1);
+  }
+}
+
+@keyframes ele-jump {
+  0% {
+    transform:  rotate(0deg) ;
+  }
+
+  50% {
+    transform:  rotate(19deg) ;
+    margin-bottom: 10px;
+  }
+
+  100% {
+    transform:  rotate(0deg) ;
+  }
+}

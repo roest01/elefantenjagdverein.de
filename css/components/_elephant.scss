@@ -33,7 +33,11 @@ body.pause .ele-wrapper {
       }
       &.shot.ka-crash {
         animation: ele-movement 1s infinite linear, ele-ahead $progress_time * $speed infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
-        transform-origin: 0 100%
+        top: 50%;
+      }
+      &.shot.ka-rotate {
+        animation: ele-movement 1s infinite linear, ele-ahead $progress_time * $speed infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important;
+        top: 0;
       }
     }
   }
@@ -45,13 +49,6 @@ body.pause .ele-wrapper {
   &.default {
     img {
       margin-bottom: -25px;
-    }
-  }
-  &.benjamin {
-    img {
-      width: 250px;
-      margin-top: -300px;
-      animation: shake 2.5s cubic-bezier(.36,.07,.19,.97) both infinite;
     }
   }
 
@@ -491,6 +488,44 @@ div[class^="ele-leg-"] {
   }
 }
 
+@keyframes shot-rotation {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(360deg);
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(360deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  70% {
+    transform: rotate(360deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+}
+
 @keyframes eyes-blink {
   0% {
     height: 10px
@@ -624,16 +659,6 @@ div[class^="ele-leg-"] {
   }
 }
 
-@keyframes shake {
-  0% {
-    transform: rotate(-5deg);
-  }
 
-  50% {
-    transform: rotate(5deg);
-  }
-
-  100% {
-    transform: rotate(-5deg);
-  }
-}
+@import "../../elephants/lia/lia";
+@import "../../elephants/benjamin/benjamin";

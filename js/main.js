@@ -109,7 +109,7 @@ let elephantManagerClass = function(server){
             case 1:
 
                 break;
-            case 3:
+            case -1: //disabled
                 elephantManager.pause();
                 swal({
                     title: "Eure Lordschaft hat <br />"+elephantManager.killedElephants +" Elefanten getötet.",
