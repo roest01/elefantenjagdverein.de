@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 exports.EleServerClass = function(){
     let eleServer = this;
 
@@ -24,26 +26,28 @@ exports.EleServerClass = function(){
      * @returns {Promise}
      */
     eleServer.loadEleModules = function(){
-        return new Promise(function(resolve, reject) {//@todo remove if finished
-            resolve({});
-        });
         let eleFolder = "elephants/";
         return new Promise(function(resolve, reject){
             let elephants = {};
-            jQuery.getJSON(eleFolder+'elephants.json', function(activeElephants){
-                jQuery.each(activeElephants, function(index, elephantName){
-                    jQuery.getJSON(eleFolder+elephantName+"/"+elephantName+".json", function(config){
-                        jQuery.extend(config, {
-                            name:  elephantName,
-                            template: Handlebars.templates[elephantName+".hbs"]
-                        });
-                        elephants[elephantName] = config;
-
-                        if (index === (activeElephants.length - 1)){
-                            resolve(elephants);
-                        }
+            const elephantsContent = fs.readFileSync(eleFolder+"elephants.json", "utf-8");
+            const activeElephants = JSON.parse(elephantsContent);
+            if (!Array.isArray(activeElephants)) {
+                reject(new Error("elephants.json malformed"));
+            }
+            activeElephants.forEach(function(elephantName, index){
+                const content = fs.readFileSync(eleFolder+elephantName+"/"+elephantName+".json", "utf-8");
+                const config = JSON.parse(content);
+                if (config){
+                    jQuery.extend(config, {
+                        name:  elephantName,
+                        template: elephantName+".hbs" // was: Handlebars.templates[elephantName+".hbs"]
                     });
-                });
+                    elephants[elephantName] = config;
+
+                    if (index === (activeElephants.length - 1)){
+                        resolve(elephants);
+                    }
+                }
             });
         });
     };
