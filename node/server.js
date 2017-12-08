@@ -11,16 +11,20 @@ let eleServer = new eleServerJS.EleServerClass();
 
 // Define/initialize our global vars
 let socketCount = 0;
-let clientInfo = {};
+let clientInfo = {
+    id: -1,
+    name: "anonym"
+};
 
 io.sockets.on('connection', function(client) {
     // Socket has connected, increase socket count
     socketCount++;
     // Let all sockets know how many are connected
     io.sockets.emit('users connected', socketCount);
+
     console.log("client connected", client.id);
     clientInfo.id = client.id;
-    client.emit("connected", clientInfo);
+    io.sockets.emit('player updated', clientInfo);
 
     client.on('disconnect', function () {
         // Decrease the socket count on a disconnect, emit
@@ -44,7 +48,7 @@ io.sockets.on('connection', function(client) {
             console.log("new score", memberScore);
 
             hunterLeaderboard.rankMember(user.id, memberScore, kill.user, function(){
-                console.log("updated");
+                console.log("rankMember", kill);
                 io.sockets.emit('rank updated', {
                     user: user,
                     memberScore: memberScore
@@ -53,15 +57,23 @@ io.sockets.on('connection', function(client) {
         });
     });
 
+    client.on('initialized', function(){
+        client.emit("connected", clientInfo);
+    });
+
+
     client.on('request eleModules', function(input, callback){
         eleServer.loadEleModules().then(function(eleModules){
-            callback(eleModules);
+            client.emit("request eleModules", eleModules);
         });
     });
 
-    client.on('set nickname', function(nickname){
-       clientInfo.nickname = nickname;
-       //@todo publish to clients
+    client.on('set nickname', function(user){
+       clientInfo.nickname = user.name;
+        io.sockets.emit('player updated', {
+            nickname: user.name,
+            id: user.id
+        });
     });
 
 });

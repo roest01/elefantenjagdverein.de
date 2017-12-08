@@ -2,18 +2,25 @@ let elephantHandle;
 
 
 jQuery(document).ready(function(){
-    let socketManager = new socketManagerClass();
-    let elephantManager = new elephantManagerClass(socketManager);
+    let connectionClass = new ConnectionClass();
+    let connection = connectionClass.connect();
+
+    let transmitter = new TransmitterClass(connection);
+    let elephantManager = new ElephantClass(transmitter);
+    let receiver = new EeceiverClass(connection, elephantManager);
+
     elephantManager._construct(); //go go go
 });
 
-let elephantManagerClass = function(server){
+let ElephantClass = function(transmitter){
     let elephantManager = this;
     let gamePause = false;
     let maximumElephants = 7; //same time
     let helper = new helperClass();
+    let clientInfo = new ClientInfo();
 
     elephantManager.elephants = {};
+    elephantManager.activePlayer = {};
     elephantManager.alive = {
         starter: {
             id: "starter",
@@ -23,16 +30,30 @@ let elephantManagerClass = function(server){
     elephantManager.killedElephants = 0;
     elephantManager.deadBodies = [];
 
+    /** ### Server Communication ## **/
 
     elephantManager._construct = function(){
-        server.connect().then(function(){
-            server.getElephantModules().then(function(elephants){
-                elephantManager.elephants = elephants;
-                //elephantManager.startGame();
-            });
+        transmitter.initialized();
+        transmitter.getElephantModules();
+    };
+
+    elephantManager.setClientInfo = function(clientInfo){
+        clientInfo.user = clientInfo;
+    };
+
+    elephantManager.setElephantModules = function(elephants){
+        //elephantManager.elephants = elephants;
+        elephantManager.loadEleModules().then(function(elephants){
+            elephantManager.elephants = elephants;
         });
     };
 
+    /** ## Game Code ## **/
+
+    /**
+     * @deprecated
+     * @returns {Promise}
+     */
     elephantManager.loadEleModules = function(){
         let eleFolder = "elephants/";
         return new Promise(function(resolve, reject){
@@ -112,7 +133,7 @@ let elephantManagerClass = function(server){
             case 1:
 
                 break;
-            case -1: //disabled
+            case 3: //disabled
                 elephantManager.pause();
                 swal({
                     title: "Eure Lordschaft hat <br />"+elephantManager.killedElephants +" Elefanten getötet.",
@@ -214,6 +235,15 @@ let elephantManagerClass = function(server){
             elephantHandle = window.setTimeout(function(){
                 elephantManager.generateElephant();
             }, newElephantIn);
+        }
+    };
+
+    elephantManager.updateActivePlayers = function(playerInfo){
+        console.log("updateActivePlayers", playerInfo);
+        if (elephantManager.activePlayer[playerInfo.id]){
+            jQuery('#'+playerInfo.id).find(".name").html(playerInfo.name);
+        } else {
+            jQuery('#just_online').append('<li class="list-group-item" id="'+playerInfo.id+'"><span class="name">'+playerInfo.name+'</span></li>')
         }
     };
 

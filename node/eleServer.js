@@ -24,6 +24,9 @@ exports.EleServerClass = function(){
      * @returns {Promise}
      */
     eleServer.loadEleModules = function(){
+        return new Promise(function(resolve, reject) {//@todo remove if finished
+            resolve({});
+        });
         let eleFolder = "elephants/";
         return new Promise(function(resolve, reject){
             let elephants = {};
