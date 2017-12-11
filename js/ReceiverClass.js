@@ -6,8 +6,13 @@
 let ReceiverClass = function(server, client){
     let receiver = this;
 
-    server.on('player updated', function(playerInfo) {
-        client.updateActivePlayers(playerInfo);
+    server.on('users connected', function(connected){
+        client.updateUsersConnected(connected);
+    });
+
+    server.on('update active player', function(players) {
+        console.log("(RC) update active player", players);
+        client.updateActivePlayers(players);
     });
 
     server.on('connected', function(clientInfo) {
@@ -15,8 +20,17 @@ let ReceiverClass = function(server, client){
         client.setClientInfo(clientInfo);
     });
 
-    server.on('receive eleModules', function(eleModules){
-        client.setElephantModules(eleModules);
+    server.on('reconnect', function(){
+        client.clearActivePlayer();
     });
 
+    server.on('client disconnected', function(id) {
+        console.log("(RC): client disconnected", id);
+        client.activePlayerDisconnected(id);
+    });
+
+    server.on('receive eleModules', function(eleModules){
+        console.log("(RC): receive eleModules");
+        client.setElephantModules(eleModules);
+    });
 };

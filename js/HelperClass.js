@@ -1,4 +1,4 @@
-let helperClass = function(){
+let HelperClass = function(){
     let helper = this;
 
     /**

@@ -1,14 +1,35 @@
 
 let ClientInfo = function(){
-    let client = this;
-    let user = {
-        name: "anonym",
-        id: ""
+    let clientInfo = this;
+    clientInfo.activePlayer = {};
+
+    clientInfo.user = {};
+
+    clientInfo.updateActivePlayer = function(player){
+        clientInfo.activePlayer[player.id] = player;
     };
 
-    client.__construct = function(){
+    clientInfo.removeActivePlayer = function(player){
+        delete clientInfo.activePlayer[player.id];
+    };
+
+    clientInfo.getActivePlayers = function(player){
+        return clientInfo.activePlayer;
+    };
+
+    clientInfo.getCurrentPlayer = function(){
+        return clientInfo.activePlayer[clientInfo.user.id];
+    };
+
+    clientInfo.playerKnown = function(id){
+        return (!!clientInfo.activePlayer[id]);
+    };
+
+
+
+    clientInfo.__construct = function(){
 
     };
 
-    client.__construct();
+    clientInfo.__construct();
 };

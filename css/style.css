@@ -545,15 +545,6 @@ body, .claim-container {
 .claim-container {
   padding: 50px; }
 
-.leaderboard {
-  margin-top: 5px;
-  float: right;
-  width: 15rem;
-  color: #d3d3d3; }
-  .leaderboard .card-title {
-    text-align: center;
-    color: #000000; }
-
 .counter-wheel {
   overflow: hidden;
   margin: 0 auto;
@@ -579,7 +570,7 @@ body, .claim-container {
   font-weight: normal;
   font-style: normal; }
 a {
-  color: #ffffff; }
+  color: #d3d3d3; }
   a:hover {
     color: #d3d3d3; }
 
@@ -587,6 +578,22 @@ a {
   text-align: left; }
   .claim h1 {
     font-size: 55px; }
+
+.leaderboard {
+  color: #808080;
+  margin-top: 5px;
+  float: right;
+  width: 15rem; }
+  .leaderboard .bg-secondary {
+    color: #FFFFFF; }
+  .leaderboard .list-group {
+    max-height: 280px;
+    overflow: scroll; }
+  .leaderboard .just_online .badge {
+    float: right; }
+  .leaderboard .card-title {
+    text-align: center;
+    color: #000000; }
 
 @media (min-width: 640px) {
   .visible-xs {

@@ -7,7 +7,7 @@ jQuery(document).ready(function(){
 
     let transmitter = new TransmitterClass(connection);
     let elephantManager = new ElephantClass(transmitter);
-    let receiver = new EeceiverClass(connection, elephantManager);
+    new ReceiverClass(connection, elephantManager);
 
     elephantManager._construct(); //go go go
 });
@@ -16,7 +16,7 @@ let ElephantClass = function(transmitter){
     let elephantManager = this;
     let gamePause = false;
     let maximumElephants = 7; //same time
-    let helper = new helperClass();
+    let helper = new HelperClass();
     let clientInfo = new ClientInfo();
 
     elephantManager.elephants = {};
@@ -37,15 +37,21 @@ let ElephantClass = function(transmitter){
         transmitter.getElephantModules();
     };
 
-    elephantManager.setClientInfo = function(clientInfo){
-        clientInfo.user = clientInfo;
+    elephantManager.setClientInfo = function(user){
+        clientInfo.user = user;
     };
 
     elephantManager.setElephantModules = function(elephants){
-        //elephantManager.elephants = elephants;
-        elephantManager.loadEleModules().then(function(elephants){
-            elephantManager.elephants = elephants;
+        elephantManager.loadEleModules().then(function(eleModules){
+            elephantManager.elephants = eleModules;
+            elephantManager.startGame(); //@todo wrong logical call position
         });
+    };
+
+    elephantManager.clearActivePlayer = function(){
+        console.log("clear active player");
+        clientInfo.activePlayer = {};
+        jQuery('#just_online').html('');
     };
 
     /** ## Game Code ## **/
@@ -55,7 +61,7 @@ let ElephantClass = function(transmitter){
      * @returns {Promise}
      */
     elephantManager.loadEleModules = function(){
-        let eleFolder = "elephants/";
+        let eleFolder = "server/elephants/";
         return new Promise(function(resolve, reject){
             let elephants = {};
             jQuery.getJSON(eleFolder+'elephants.json', function(activeElephants){
@@ -87,6 +93,7 @@ let ElephantClass = function(transmitter){
     };
 
     elephantManager.killElephant = function(elephant){
+        console.log("killElephant", clientInfo);
         if (elephant.hasClass("alive")){
             elephant.removeClass("alive").addClass("shot");
 
@@ -98,9 +105,7 @@ let ElephantClass = function(transmitter){
                 delete elephantManager.alive[id];
                 elephantManager.killedElephants++;
 
-                if (server.connected){
-                    server.killedElephant(elephantInformations);
-                }
+                transmitter.killedElephant(elephantInformations, clientInfo.user);
 
                 elephantManager.handleKill();
             } else {
@@ -121,44 +126,43 @@ let ElephantClass = function(transmitter){
      * - ask for username
      */
     elephantManager.handleKill = function(){
+        let currentUser = clientInfo.getCurrentPlayer();
+        currentUser.kills++; //pre server sync
+        console.log("currentUser", currentUser);
         let countimator = jQuery('.counter-wheel');
         countimator.countimator({
-            value: elephantManager.killedElephants,
+            value: currentUser.kills,
             complete: function(){
                 jQuery(".counter-wheel-highlight").attr('d', '');
             }
         });
 
-        switch(elephantManager.killedElephants) {
-            case 1:
-
-                break;
-            case 3: //disabled
-                elephantManager.pause();
-                swal({
-                    title: "Eure Lordschaft hat <br />"+elephantManager.killedElephants +" Elefanten getötet.",
-                    html: "Dürfte ich ergebenst darum bitten, den Namen eurer Lordschaft zu erfahren um eure Lordschaft auf unserer <br /> 'Tafel der Ewigkeit' zu notieren.",
-                    input: 'text',
-                    showCancelButton: true,
-                    confirmButtonText: 'Mein Name sei dein',
-                    cancelButtonText: 'Nein!',
-                    showLoaderOnConfirm: true,
-                    preConfirm: function (name)  {
-                        return new Promise(function (resolve) {
-                            if (name === '') {
-                                swal.showValidationError(
-                                    'Eure Lorschaft möge den Namen nicht leer lassen'
-                                )
-                            }
-                            resolve()
-                        })
-                    },
-                    allowOutsideClick: true
-                }).then(function(input) {
-                    serverConnection.registerWithNickname(input.value);
-                    elephantManager.resume();
-                });
-                break;
+        if (currentUser.kills === 3 || currentUser.kills === 30 && currentUser.name === "anonym"){
+            elephantManager.pause();
+            swal({
+                title: "Eure Lordschaft hat <br />" + currentUser.kills + " Elefanten getötet.",
+                html: "Dürfte ich ergebenst darum bitten, den Namen eurer Lordschaft zu erfahren um eure Lordschaft auf unserer <br /> 'Tafel der Ewigkeit' zu notieren.",
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: 'Mein Name sei dein',
+                cancelButtonText: 'Nein!',
+                showLoaderOnConfirm: true,
+                preConfirm: function (name)  {
+                    return new Promise(function (resolve) {
+                        if (name === '') {
+                            swal.showValidationError(
+                                'Eure Lorschaft möge den Namen nicht leer lassen'
+                            )
+                        }
+                        resolve()
+                    })
+                },
+                allowOutsideClick: true
+            }).then(function(input) {
+                clientInfo.user.name = input.value;
+                transmitter.registerWithNickname(clientInfo.user);
+                elephantManager.resume();
+            });
         }
     };
 
@@ -201,7 +205,7 @@ let ElephantClass = function(transmitter){
         let singleElephant = elephants[randomElephantAttr];
 
         singleElephant.compiled = singleElephant.template({
-            eleFolder: "elephants/"+singleElephant.name+"/",
+            eleFolder: "server/elephants/"+singleElephant.name+"/",
             speed: speed
         });
         return singleElephant;
@@ -232,19 +236,55 @@ let ElephantClass = function(transmitter){
             });
 
             let newElephantIn = helper.getRandomInt(5,20) * 1123; //microtime
+            console.log("### new elephant in "+newElephantIn / 1000);
             elephantHandle = window.setTimeout(function(){
                 elephantManager.generateElephant();
             }, newElephantIn);
         }
     };
 
-    elephantManager.updateActivePlayers = function(playerInfo){
-        console.log("updateActivePlayers", playerInfo);
-        if (elephantManager.activePlayer[playerInfo.id]){
-            jQuery('#'+playerInfo.id).find(".name").html(playerInfo.name);
-        } else {
-            jQuery('#just_online').append('<li class="list-group-item" id="'+playerInfo.id+'"><span class="name">'+playerInfo.name+'</span></li>')
-        }
+
+    elephantManager.initActivePlayers = function(players){
+        jQuery.each(players, function(id, player){
+            console.log("set player", player);
+            elephantManager.addPlayer(player);
+        });
+    };
+
+    elephantManager.updateActivePlayers = function(players){
+        jQuery.each(players, function(id, player){
+            if (clientInfo.playerKnown(player.id)){
+                elephantManager.updatePlayer(player); //layout
+            } else {
+                elephantManager.addPlayer(player); //layout
+            }
+            clientInfo.updateActivePlayer(player);//dataStore
+
+            if (player.id === clientInfo.user.id){
+                jQuery('#'+clientInfo.user.encodedID).addClass('bg-secondary');
+            }
+        });
+    };
+
+    elephantManager.addPlayer = function(player){
+        jQuery('#just_online').append('<li class="list-group-item" id="'+player.encodedID+'"><span class="name">'+player.name+'</span> <span class="badge badge-info badge-pill">'+player.kills+'</span></li>');
+        return true;
+    };
+
+    elephantManager.updatePlayer = function(player){
+        let DOMPlayer = jQuery('#'+player.encodedID);
+        DOMPlayer.find(".name").html(player.name);
+        DOMPlayer.find(".badge").html(player.kills);
+        return true;
+    };
+
+    elephantManager.updateUsersConnected = function(connected){
+        jQuery('#activeNow').html(connected);
+    };
+
+    elephantManager.activePlayerDisconnected = function(playerID){
+        console.log("activePlayerDisconnected", playerID);
+        jQuery('#'+playerID).remove();
     };
 
     elephantManager.pause = function(){
@@ -255,6 +295,7 @@ let ElephantClass = function(transmitter){
     elephantManager.resume = function(){
         jQuery("body").removeClass("pause");
         gamePause = false;
+        elephantManager.generateElephant();
     };
 
     elephantManager.getUniqueIdForElephant = function(elephant){

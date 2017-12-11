@@ -1,4 +1,7 @@
 const fs = require('fs');
+const Handlebars = require('handlebars');
+
+require('./elephants/elephants.tpl');
 
 exports.EleServerClass = function(){
     let eleServer = this;
@@ -14,7 +17,7 @@ exports.EleServerClass = function(){
                 return 1;
                 break;
             case "benjamin":
-                return 2;
+                return 1;
                 break;
             default:
                 return 1;
@@ -22,11 +25,10 @@ exports.EleServerClass = function(){
     };
 
     /**
-     * @todo refactor this method to work without jquery
      * @returns {Promise}
      */
     eleServer.loadEleModules = function(){
-        let eleFolder = "elephants/";
+        let eleFolder = "server/elephants/";
         return new Promise(function(resolve, reject){
             let elephants = {};
             const elephantsContent = fs.readFileSync(eleFolder+"elephants.json", "utf-8");
@@ -38,10 +40,17 @@ exports.EleServerClass = function(){
                 const content = fs.readFileSync(eleFolder+elephantName+"/"+elephantName+".json", "utf-8");
                 const config = JSON.parse(content);
                 if (config){
-                    jQuery.extend(config, {
+                    let details = {
                         name:  elephantName,
-                        template: elephantName+".hbs" // was: Handlebars.templates[elephantName+".hbs"]
-                    });
+                        template: Handlebars.templates[elephantName+".hbs"]
+                    };
+
+                    for (let key in details){
+                        if (details.hasOwnProperty(key)){
+                            config[key] = details[key];
+                        }
+                    }
+
                     elephants[elephantName] = config;
 
                     if (index === (activeElephants.length - 1)){

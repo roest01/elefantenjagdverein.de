@@ -7,4 +7,6 @@ exec redis-server &
 echo "Starting nginx"
 exec nginx -g "daemon off;"
 
+exec node ../server/server.js &
+
 exit 0;

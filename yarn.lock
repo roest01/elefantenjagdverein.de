@@ -206,6 +206,10 @@ jquery-countimator@benignware/jquery-countimator:
   version "3.2.1"
   resolved "https://codeload.github.com/jquery/jquery-dist/tar.gz/77d2a51d0520d2ee44173afdf4e40a9201f5964e"
 
+js-cookie@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.0.tgz#1b2c279a6eece380a12168b92485265b35b1effb"
+
 kind-of@^3.0.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -264,6 +268,10 @@ parseuri@0.0.5:
   resolved "https://registry.yarnpkg.com/parseuri/-/parseuri-0.0.5.tgz#80204a50d4dbb779bfdc6ebe2778d90e4bce320a"
   dependencies:
     better-assert "~1.0.0"
+
+popper.js@1.12.3:
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.3.tgz#e46a99c52e74e310411df505d820b61bdbe7eaee"
 
 "redis@~ 0.8":
   version "0.8.6"

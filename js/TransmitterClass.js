@@ -10,15 +10,15 @@ let TransmitterClass = function(connection){
         connection.emit("request eleModules");
     };
 
-    transmitter.killedElephant = function(elephantInformations){
+    transmitter.killedElephant = function(elephantInformations, user){
+        console.log("transmitter killed elephant");
         connection.emit('killed elephant', {
             info: elephantInformations,
-            user: transmitter.user
+            user: user
         });
     };
 
-    transmitter.registerWithNickname = function(nickname){
-        transmitter.user.name = nickname;
-        connection.emit('set nickname', transmitter.user);
+    transmitter.registerWithNickname = function(user){
+        connection.emit('register with nickname', user);
     };
 };
