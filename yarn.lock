@@ -335,8 +335,8 @@ source-map@~0.5.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
 
 sweetalert2@^7.0.5:
-  version "7.0.6"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.0.6.tgz#30cee8c8b3de671c27ee30f74dced6c0b959667e"
+  version "7.0.9"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.0.9.tgz#04ec97379d7d5c6d210b27f25453d650e5492b27"
 
 to-array@0.1.4:
   version "0.1.4"
@@ -363,9 +363,9 @@ uws@~0.14.4:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/uws/-/uws-0.14.5.tgz#67aaf33c46b2a587a5f6666d00f7691328f149dc"
 
-window-objectSize@0.1.0:
+window-size@0.1.0:
   version "0.1.0"
-  resolved "https://registry.yarnpkg.com/window-objectSize/-/window-objectSize-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
+  resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
 wordwrap@0.0.2:
   version "0.0.2"
@@ -394,7 +394,7 @@ yargs@~3.10.0:
     camelcase "^1.0.2"
     cliui "^2.1.0"
     decamelize "^1.0.0"
-    window-objectSize "0.1.0"
+    window-size "0.1.0"
 
 yeast@0.1.2:
   version "0.1.2"
