@@ -11,7 +11,6 @@ let TransmitterClass = function(connection){
     };
 
     transmitter.killedElephant = function(elephantInformations, user){
-        console.log("transmitter killed elephant");
         connection.emit('killed elephant', {
             info: elephantInformations,
             user: user

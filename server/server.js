@@ -41,8 +41,6 @@ io.sockets.on('connection', function(client) {
     client.on('killed elephant', function (kill) {
         let user = kill.user;
         hunterLeaderboard.scoreFor(user.id, function(memberScore) {
-            console.log("got score for user", memberScore);
-
             if (memberScore === null){
                 memberScore = 0;
             }
@@ -54,14 +52,10 @@ io.sockets.on('connection', function(client) {
 
             hunterLeaderboard.rankMember(user.id, memberScore, JSON.stringify(serverInfo.getPlayerByID(user.id)), function(){
                 io.sockets.emit('update active player', [serverInfo.getPlayerByID(user.id)]);
-                /*io.sockets.emit('rank updated', {
-                    user: user,
-                    memberScore: memberScore
-                });*/
+                serverInfo.getFirstRankPage().then(function(players){
+                    io.sockets.emit("update rank player", players);
+                });
             });
-        });
-        serverInfo.getFirstRankPage().then(function(players){
-            io.sockets.emit("update rank player", players);
         });
     });
 

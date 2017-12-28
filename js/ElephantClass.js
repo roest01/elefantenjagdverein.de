@@ -52,7 +52,6 @@ let ElephantClass = function(transmitter){
     };
 
     elephantManager.clearActivePlayer = function(){
-        console.log("clear active player");
         clientInfo.activePlayer = {};
         jQuery('#just_online').html('');
     };
@@ -101,7 +100,6 @@ let ElephantClass = function(transmitter){
         if (!elephantManager.gameStarted()){
             jQuery("body").addClass("gameStarted");
         }
-        console.log("killElephant", clientInfo);
         if (elephant.hasClass("alive")){
             elephant.removeClass("alive").addClass("shot");
 
@@ -147,7 +145,6 @@ let ElephantClass = function(transmitter){
         let currentUser = clientInfo.getCurrentPlayer();
         if (currentUser){
             currentUser.kills++; //pre server sync
-            console.log("currentUser", currentUser);
             elephantManager.updateKillCounter(currentUser.kills);
 
             if (currentUser.kills === 3 && currentUser.name === "anonym" ){
@@ -187,7 +184,6 @@ let ElephantClass = function(transmitter){
 
             clientInfo.user.name = input.value;
 
-            console.log("!!!!register with nickkname", clientInfo.user, input.value);
             transmitter.registerWithNickname(clientInfo.user);
             elephantManager.resume();
         });
@@ -274,7 +270,6 @@ let ElephantClass = function(transmitter){
      * @param players
      */
     elephantManager.updateRankTab = function(players){
-        console.log("UPDATE RANK PLAYERS");
         let rank = jQuery('#rank_list');
         rank.html('');
         jQuery.each(players, function(id, player){
@@ -284,10 +279,8 @@ let ElephantClass = function(transmitter){
     };
 
     elephantManager.updateActivePlayers = function(players){
-        console.log(clientInfo.activePlayer);
         jQuery.each(players, function(id, player){
             if (clientInfo.playerKnown(player.id)){
-                console.log("UPDATE player");
                 elephantManager.updatePlayer(player); //layout
             } else {
                 elephantManager.addPlayer(player); //layout
