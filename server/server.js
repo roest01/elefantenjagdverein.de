@@ -20,8 +20,8 @@ io.sockets.on('connection', function(client) {
     serverInfo.updateActivePlayer(client.userId, {
         id: client.userId
     }).then(function(){
-        io.sockets.emit('users connected', serverInfo.getTotalPlayers());
-        io.sockets.emit("update active player", serverInfo.getActivePlayers());
+        //io.sockets.emit('users connected', serverInfo.getTotalPlayers());
+        //io.sockets.emit("update active player", serverInfo.getActivePlayers());
     });
 
     client.on('disconnect', function () {
@@ -60,7 +60,10 @@ io.sockets.on('connection', function(client) {
 
     client.on('initialized', function(){
         client.emit("connected", serverInfo.getPlayerByID(client.userId));
-        client.emit("update active player", serverInfo.getActivePlayers());
+        //client.emit("update active player", serverInfo.getActivePlayers());
+
+        io.sockets.emit('users connected', serverInfo.getTotalPlayers());
+        io.sockets.emit("update active player", serverInfo.getActivePlayers());
     });
 
 
@@ -71,7 +74,10 @@ io.sockets.on('connection', function(client) {
     });
 
     client.on('register with nickname', function(user){
-       serverInfo.storeUserInformation(user.id, {
+        let striptags = require('striptags');
+        user.name = striptags(user.name);
+
+        serverInfo.storeUserInformation(user.id, {
            name: user.name
        });
         serverInfo.syncInDatabase(serverInfo.getPlayerByID(user.id));
@@ -79,4 +85,5 @@ io.sockets.on('connection', function(client) {
         io.sockets.emit('update active player', [serverInfo.getPlayerByID(user.id)]);
     });
 
+    client.emit("server ready");
 });

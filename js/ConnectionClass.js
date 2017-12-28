@@ -1,15 +1,13 @@
 
 let ConnectionClass = function(){
     let connection = this;
-    let connected = false;
 
     connection.connect = function(){
         let userid = connection.getUserid();
-        let serverConnection = io('http://localhost:3000?userid='+userid, {
+        let serverConnection = io('http://'+window.location.hostname+':3000?userid='+userid, {
             path: '/eleServer',
             forceNew: false
         });
-        connected = true;
 
         serverConnection.on('pong', function(){
             userid = connection.getUserid(); //refresh cookie expire

@@ -18,10 +18,23 @@ let ReceiverClass = function(server, client){
     server.on('connected', function(clientInfo) {
         console.log("(RC): got clientInfo", clientInfo);
         client.setClientInfo(clientInfo);
+        client.updateConnectionStatus("verbunden");
+        client.updateKillCounter(clientInfo.kills);
+    });
+
+    server.on('reconnect_attempt', function(){
+        client.updateConnectionStatus("erneut verbinden");
+        client.clearActivePlayer();
+        client.pause();
     });
 
     server.on('reconnect', function(){
-        client.clearActivePlayer();
+        client.updateConnectionStatus("verbinde ...");
+        client.resume();
+    });
+
+    server.on('server ready', function(){
+        client._construct();
     });
 
     server.on('client disconnected', function(id) {

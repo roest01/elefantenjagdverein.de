@@ -12,6 +12,7 @@ $start-position: -20%;
 $shadow-color: rgba(74, 74, 74, 0.53);  //Set rgba for color opacity
 
 .ele-container {
+  cursor:pointer; //hack to prevent double tab to zoom on mobile
   height: 260px ;
   overflow: visible;
   position: relative;
@@ -659,6 +660,27 @@ div[class^="ele-leg-"] {
   }
 }
 
+.initialTarget {
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 35px;
+  opacity:0;
+  animation: initial-target-animation 1s steps(5, start) infinite;
+  -webkit-animation: initial-target-animation 1s steps(5, start) infinite;
+}
+
+@keyframes initial-target-animation {
+  0% {
+    margin-top: 20px;
+  }
+  50% {
+    margin-top: 15px;
+  }
+  100% {
+    margin-top: 25px;
+    opacity: 1;
+  }
+}
 
 @import "../../server/elephants/lia/lia";
 @import "../../server/elephants/benjamin/benjamin";

@@ -65,10 +65,12 @@ a {
 }
 
 .leaderboard {
+  z-index:1;
   color: #808080;
 
   .bg-secondary {
     color: #FFFFFF;
+    cursor: hand;
   }
 
   .list-group {
@@ -93,6 +95,11 @@ a {
 }
 
 
+#connectionInfo {
+  text-align: right;
+  margin-bottom: -25px;
+}
+
 @media (min-width: 640px) {
   .visible-xs {
     display:none;
@@ -100,8 +107,9 @@ a {
 }
 
 @media (max-width: 840px) {
-  .claim h1 {
-    font-size: 5vw;
+  .gameStarted .claim h1 {
+    color:#000000; //hide text
+    transition: color 2s;
   }
   .ele-wrapper {
     zoom: 0.8;
