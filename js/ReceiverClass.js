@@ -46,4 +46,8 @@ let ReceiverClass = function(server, client){
         console.log("(RC): receive eleModules");
         client.setElephantModules(eleModules);
     });
+
+    server.on('update rank player', function(players){
+       client.updateRankTab(players);
+    });
 };

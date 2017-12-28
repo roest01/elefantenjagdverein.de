@@ -1,6 +1,3 @@
-let elephantHandle;
-
-
 jQuery(document).ready(function(){
     let connectionClass = new ConnectionClass();
     let connection = connectionClass.connect();
@@ -247,7 +244,6 @@ let ElephantClass = function(transmitter){
     elephantManager.generateElephant = function(){
         let elephantManager = this;
         let container = jQuery('.ele-container');
-        window.clearTimeout(elephantHandle);
 
         if (helper.objectSize(elephantManager.alive) < maximumElephants && !gamePause){
             let randomSpeed = helper.getRandomInt(1,5);
@@ -267,7 +263,7 @@ let ElephantClass = function(transmitter){
 
             let newElephantIn = helper.getRandomInt(5,20) * 1123; //microtime
             console.log("### new elephant in "+newElephantIn / 1000);
-            elephantHandle = window.setTimeout(function(){
+            window.setTimeout(function(){
                 elephantManager.generateElephant();
             }, newElephantIn);
         }
@@ -275,15 +271,15 @@ let ElephantClass = function(transmitter){
 
 
     /**
-     * @deprecated
-     * not used anywhere??!
      * @param players
      */
-    elephantManager.initActivePlayers = function(players){
-        console.log("INIT ACTIVE PLAYERS");
+    elephantManager.updateRankTab = function(players){
+        console.log("UPDATE RANK PLAYERS");
+        let rank = jQuery('#rank_list');
+        rank.html('');
         jQuery.each(players, function(id, player){
-            console.log("set player", player);
-            elephantManager.addPlayer(player);
+            let playerData = JSON.parse(player.member_data);
+            rank.append('<li class="list-group-item" id="'+playerData.encodedID+'"><span class="badge badge-success badge-pill">'+player.rank+'</span> <span class="name">'+playerData.name+'</span> ('+playerData.kills+')</li>');
         });
     };
 

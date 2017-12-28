@@ -89,6 +89,14 @@ exports.ServerInfoClass = function(hunterLeaderboard){
         });
     };
 
+    serverInfo.getFirstRankPage = function(){
+        return new Promise(function(resolve){
+            hunterLeaderboard.leaders(1, {'withMemberData': true}, function(leaders){
+                resolve(leaders);
+            });
+        });
+    };
+
     serverInfo.removeActivePlayer = function(id){
         delete serverInfo.activePlayer[id];
     };

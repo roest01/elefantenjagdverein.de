@@ -4,8 +4,8 @@ let io = require('socket.io')(3000, {
     pingInterval: 30000
 });
 
-let Tie_Leaderboard = require('agoragames-leaderboard/lib/tie_ranking_leaderboard.js');
-let hunterLeaderboard = new Tie_Leaderboard("hunterLeaderboard");
+let Leaderboard = require('agoragames-leaderboard/lib/leaderboard.js');
+let hunterLeaderboard = new Leaderboard("hunterLeaderboard");
 
 let eleServerJS = require('./eleServer.js');
 let eleServer = new eleServerJS.EleServerClass();
@@ -56,6 +56,9 @@ io.sockets.on('connection', function(client) {
                 });*/
             });
         });
+        serverInfo.getFirstRankPage().then(function(players){
+            io.sockets.emit("update rank player", players);
+        });
     });
 
     client.on('initialized', function(){
@@ -64,6 +67,10 @@ io.sockets.on('connection', function(client) {
 
         io.sockets.emit('users connected', serverInfo.getTotalPlayers());
         io.sockets.emit("update active player", serverInfo.getActivePlayers());
+
+        serverInfo.getFirstRankPage().then(function(players){
+            io.sockets.emit("update rank player", players);
+        });
     });
 
 
