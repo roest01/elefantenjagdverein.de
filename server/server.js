@@ -5,7 +5,10 @@ let io = require('socket.io')(3000, {
 });
 
 let Leaderboard = require('agoragames-leaderboard/lib/leaderboard.js');
-let hunterLeaderboard = new Leaderboard("hunterLeaderboard");
+let hunterLeaderboard = new Leaderboard("hunterLeaderboard", null, {
+    'host': "redis",
+    'port': "6379"
+});
 
 let eleServerJS = require('./eleServer.js');
 let eleServer = new eleServerJS.EleServerClass();
@@ -13,6 +16,7 @@ let eleServer = new eleServerJS.EleServerClass();
 let ServerInfoClass = require('./ServerInfo.js');
 let serverInfo = new ServerInfoClass.ServerInfoClass(hunterLeaderboard);
 
+console.log("### Server up and running ###");
 io.sockets.on('connection', function(client) {
     client.userId = client.handshake.query.userid;
     console.log("client connected", client.userId);

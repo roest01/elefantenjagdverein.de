@@ -36,11 +36,12 @@ RUN npm install -g yarn handlebars && cd /var/www/html/ && yarn install
 
 # precompile elephant templates
 RUN cd /var/www/html/ \
-&& handlebars -c server/elephants/*/*.hbs -f server/elephants/elephants.tpl.js \
+&& handlebars -c handlebars server/elephants/*/*.hbs -f server/elephants/elephants.tpl.js \
 && handlebars server/elephants/*/*.hbs -f server/elephants/elephants.client.tpl.js
 
 EXPOSE 80
 EXPOSE 443
+EXPOSE 3000
 
 RUN chmod +x /var/www/html/config/run.sh
 ENTRYPOINT ["/var/www/html/config/run.sh"]
