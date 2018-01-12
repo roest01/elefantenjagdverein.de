@@ -21,7 +21,6 @@
 /*Movement*/
 /*Colors*/
 .ele-container {
-  cursor: pointer;
   height: 260px;
   overflow: visible;
   position: relative;
@@ -624,6 +623,9 @@ a {
   .gameStarted .claim h1 {
     color: #000000;
     transition: color 2s; }
+
+  .claim h1 {
+    font-size: 5vw; }
 
   .ele-wrapper {
     zoom: 0.8;

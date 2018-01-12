@@ -12,7 +12,6 @@ $start-position: -20%;
 $shadow-color: rgba(74, 74, 74, 0.53);  //Set rgba for color opacity
 
 .ele-container {
-  cursor:pointer; //hack to prevent double tab to zoom on mobile
   height: 260px ;
   overflow: visible;
   position: relative;

@@ -172,6 +172,10 @@ let ElephantClass = function(transmitter){
                             'Eure Lorschaft möge den Namen nicht leer lassen'
                         )
                     }
+
+                    if (name.length > 14) {
+                        swal.showInputError("Bitte wähle einen Namen mit maximal 14 Buchstaben. Du hast aktuell "+name.length+" Buchstaben verwendet.");
+                    }
                     resolve()
                 })
             },
