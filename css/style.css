@@ -564,6 +564,7 @@ body, .claim-container {
   overflow: hidden;
   margin: 0 auto;
   margin-top: 10px;
+  margin-bottom: 10px;
   width: 8em;
   height: 8em; }
   .counter-wheel .counter-wheel-content {
@@ -620,9 +621,20 @@ a {
   .visible-xs {
     display: none; } }
 @media (max-width: 840px) {
+  .leaderboard {
+    visibility: hidden;
+    opacity: 0; }
+
   .gameStarted .claim h1 {
     color: #000000;
     transition: color 2s; }
+  .gameStarted .leaderboard {
+    visibility: visible;
+    transition: opacity 2s;
+    opacity: 1; }
+
+  .counter-wheel {
+    display: none; }
 
   .claim h1 {
     font-size: 5vw; }

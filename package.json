@@ -4,7 +4,7 @@
   "dependencies": {
     "agoragames-leaderboard": "^2.1.0",
     "blueimp-md5": "^2.10.0",
-    "bootstrap": "^4.0.0-beta.2",
+    "bootstrap": "^4.0.0-beta.3",
     "handlebars": "^4.0.11",
     "jquery": "jquery/jquery-dist#1.9.1 - 3",
     "jquery-countimator": "benignware/jquery-countimator",

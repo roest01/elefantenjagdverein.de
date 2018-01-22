@@ -15,10 +15,8 @@ exports.EleServerClass = function(){
         switch(name) {
             case "default":
                 return 1;
-                break;
             case "benjamin":
                 return 1;
-                break;
             default:
                 return 1;
         }
