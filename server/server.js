@@ -6,7 +6,7 @@ let Server = function(){
 
         return new Promise(function(resolve,reject){
             let redis = require('redis');
-            let connection = redis.createClient("6379", "localhost");
+            let connection = redis.createClient("6379", "redis");
 
             connection.on('error', function(e){
                 console.log(e.message);

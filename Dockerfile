@@ -1,7 +1,7 @@
 FROM alpine:3.6
 
 # greet me :)
-MAINTAINER Tobias Rös - <roes@amicaldo.de>
+MAINTAINER Tobias Rös - <public@protoyou.de>
 
 # install dependencies
 RUN apk update && apk add \
