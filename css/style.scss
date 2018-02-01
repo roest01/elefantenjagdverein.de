@@ -4,14 +4,31 @@ $progress_time: 5s;
 @import "components/elephant";
 
 body, .claim-container {
-  background-color: #000000;
-  color: #ffffff;
+  color: #757575;
   font-family: Inconsolata-Regular, monospace;
   overflow: hidden;
 }
 
+body {
+  background-image: url(../img/background.svg);
+  background-position-y: 43px;
+  background-repeat: repeat-x;
+  background-color: #4ccedb;
+  background-position: bottom -72px left;
+  background-size: 1200px;
+}
+
+footer {
+  color:#ffffff;
+
+  p {
+    margin:0;
+  }
+}
+
 .claim-container {
   padding: 50px;
+  margin-left: 20px;
 }
 
 .counter-wheel {
@@ -115,7 +132,7 @@ a {
   }
   .gameStarted {
     .claim h1 {
-      color:#000000; //hide text
+      color:transparent; //hide text
       transition: color 2s;
     }
     .leaderboard {
@@ -131,7 +148,7 @@ a {
     font-size: 5vw;
   }
   .ele-wrapper {
-    zoom: 0.8;
-    top:60%;
+    zoom: 0.4;
+    bottom: 240px;
   }
 }

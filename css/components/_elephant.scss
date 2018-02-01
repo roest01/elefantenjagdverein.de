@@ -13,11 +13,8 @@ $right-start-position: -25%;
 $shadow-color: rgba(74, 74, 74, 0.53);  //Set rgba for color opacity
 
 .ele-container {
-  height: 260px;
-  overflow: visible;
-  position: absolute;
+  overflow: hidden;
   width: 100%;
-  bottom: 40px;
 }
 
 body.pause .ele-wrapper {
@@ -31,16 +28,14 @@ body.pause .ele-wrapper {
         animation: ele-movement 1s infinite linear, ele-ahead-#{$direction} $progress_time * $speed infinite linear;
 
         &.shot.ka-rebound {
-          animation: ele-movement 1s infinite linear, ele-ahead-#{$direction} $progress_time * $speed infinite linear, shot-animation 3s cubic-bezier(0.2, -0.55, 0.91, 0.94) forwards !important;
+          animation: ele-movement 1s infinite linear, ele-ahead-#{$direction} $progress_time * $speed infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
           transform-origin: 0 100%
         }
         &.shot.ka-crash {
           animation: ele-movement 1s infinite linear, ele-ahead-#{$direction} $progress_time * $speed infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
-          top: 50%;
         }
         &.shot.ka-rotate {
           animation: ele-movement 1s infinite linear, ele-ahead-#{$direction} $progress_time * $speed infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important;
-          top: 0;
         }
       }
     }
@@ -84,6 +79,9 @@ body.pause .ele-wrapper {
     }
   }
 }
+
+$transformPosition: translate3D(0%, 60%, 0);
+
 .ele-wrapper {
   &.ltr {
     left: $left-start-position;
@@ -91,10 +89,14 @@ body.pause .ele-wrapper {
   &.rtl {
     right: $right-start-position;
   }
+  //position: absolute;
+  //top: 50%;
+  transform: $transformPosition;
   position: absolute;
-  top: 50%;
-  transform: translate3D(-50%, -75%, 0);
+  bottom: 203px;
   width: 200px;
+  zoom: 0.5;
+
   &.killable {
     cursor: url("../img/target.png"), auto;
   }
@@ -473,65 +475,65 @@ div[class^="ele-leg-"] {
 @keyframes fallingLeaves {
   0% {
     opacity: 1;
-    transform: translate(0, 0px) rotateZ(0deg);
+    transform: translate(0, 0px) rotateZ(0deg) $transformPosition;
   }
   75% {
     opacity: 1;
-    -webkit-transform: translate(100px, 600px) rotateZ(270deg);
+    -webkit-transform: translate(100px, 600px) rotateZ(270deg) $transformPosition;
   }
   100% {
     opacity: 0;
-    -webkit-transform: translate(150px, 800px) rotateZ(360deg);
+    -webkit-transform: translate(150px, 800px) rotateZ(360deg) $transformPosition;
   }
 }
 
 @keyframes shot-animation {
   0% {
     opacity: 1;
-    transform: translate(0, 0px) rotateZ(0deg);
+    transform: translate(0, 0px) rotateZ(0deg) $transformPosition;
   }
 
   100% {
     opacity: 0;
-    transform: translate(150px, 800px) rotateZ(360deg);
+    transform: translate(150px, 800px) rotateZ(360deg) $transformPosition;
   }
 }
 
 @keyframes shot-rotation {
   0% {
     opacity: 1;
-    transform: rotate(0deg);
+    transform: $transformPosition rotate(0deg);
   }
   10% {
-    transform: rotate(360deg);
+    transform: $transformPosition rotate(360deg);
   }
   20% {
-    transform: rotate(0deg);
+    transform: $transformPosition rotate(0deg);
   }
   30% {
-    transform: rotate(360deg);
+    transform: $transformPosition rotate(360deg);
   }
   40% {
-    transform: rotate(0deg);
+    transform: $transformPosition rotate(0deg);
   }
   50% {
-    transform: rotate(360deg);
+    transform: $transformPosition rotate(360deg);
   }
   60% {
-    transform: rotate(0deg);
+    transform: $transformPosition rotate(0deg);
   }
   70% {
-    transform: rotate(360deg);
+    transform: $transformPosition rotate(360deg);
   }
   80% {
-    transform: rotate(0deg);
+    transform: $transformPosition rotate(0deg);
   }
   90% {
-    transform: rotate(360deg);
+    transform: $transformPosition rotate(360deg);
   }
   100% {
     opacity: 0;
-    transform: rotate(0deg);
+    transform: $transformPosition rotate(0deg);
   }
 }
 
@@ -552,13 +554,13 @@ div[class^="ele-leg-"] {
 
 @keyframes ele-movement {
   0% {
-    transform: translate3D(-50%, -54%, 0)
+    transform: $transformPosition;
   }
   50% {
-    transform: translate3D(-50%, -57%, 0)
+    transform: translate3D(0%, 57%, 0);
   }
   100% {
-    transform: translate3D(-50%, -54%, 0)
+    transform: $transformPosition;
   }
 }
 

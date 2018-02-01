@@ -123,7 +123,7 @@ let ElephantClass = function(transmitter){
                     elephant.remove();
                     elephantManager.generateElephant();
                 });
-            }, 3000);
+            }, 2500);
         }
     };
 

@@ -5,7 +5,7 @@ templates['benjamin.hbs'] = template({"compiler":[7,">= 4.0.0"],"main":function(
 
   return "<div class=\"ele-wrapper benjamin speed"
     + alias4(((helper = (helper = helpers.speed || (depth0 != null ? depth0.speed : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"speed","hash":{},"data":data}) : helper)))
-    + " alive killable ka-crash\">\n    <img src=\""
+    + " ltr alive killable ka-crash\">\n    <img src=\""
     + alias4(((helper = (helper = helpers.eleFolder || (depth0 != null ? depth0.eleFolder : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"eleFolder","hash":{},"data":data}) : helper)))
     + "benjamin.png\" alt=\"benjamin elephant\">\n</div>\n";
 },"useData":true});
@@ -23,7 +23,7 @@ templates['lia.hbs'] = template({"compiler":[7,">= 4.0.0"],"main":function(conta
 
   return "<div class=\"ele-wrapper speed"
     + alias4(((helper = (helper = helpers.speed || (depth0 != null ? depth0.speed : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"speed","hash":{},"data":data}) : helper)))
-    + " lia alive killable ka-rotate\">\n    <img src=\""
+    + " lia ltr alive killable ka-rotate\">\n    <img src=\""
     + alias4(((helper = (helper = helpers.eleFolder || (depth0 != null ? depth0.eleFolder : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"eleFolder","hash":{},"data":data}) : helper)))
     + "lia.png\" alt=\"lia elephant\">\n</div>\n";
 },"useData":true});
