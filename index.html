@@ -15,56 +15,60 @@
     <body>
     <a href="https://github.com/roest01/elefantenjagdverein.de"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
 
-    <div class="container-fluid">
-        <div class="card leaderboard">
-            <div class="counter-wheel counter-wheel-callbacks"
-                 data-style="wheel"
-                 data-max="1"
-                 data-pad="2">
-                <div class="counter-wheel-content">
-                    <small>Getötete</small><br/>
-                    <div><span class="counter-count counter-wheel-highlight">00</span></div>
-                    <small>Elefanten</small>
-                </div>
-            </div>
-
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#active" role="tab">Aktiv</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#bests" role="tab">Bestenliste</a>
-                </li>
-            </ul>
-
-            <div class="tab-content">
-                <div class="tab-pane active" id="active" role="tabpanel">
-                    <div class="card-body">
-                        <h4 class="card-title">Jäger aktiv (<span id="activeNow">-</span>)</h4>
+    <div class="flex-container" style="overflow:hidden;">
+        <div class="top flex-item">
+            <div class="card leaderboard">
+                <div class="counter-wheel counter-wheel-callbacks"
+                     data-style="wheel"
+                     data-max="1"
+                     data-pad="2">
+                    <div class="counter-wheel-content">
+                        <small>Getötete</small><br/>
+                        <div><span class="counter-count counter-wheel-highlight">00</span></div>
+                        <small>Elefanten</small>
                     </div>
-                    <ul id="just_online" class="just_online list-group list-group-flush"></ul>
                 </div>
-                <div class="tab-pane" id="bests" role="tabpanel">
-                    <ul id="rank_list" class="list-group list-group-flush"></ul>
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#active" role="tab">Aktiv</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#bests" role="tab">Bestenliste</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="active" role="tabpanel">
+                        <div class="card-body">
+                            <h4 class="card-title">Jäger aktiv (<span id="activeNow">-</span>)</h4>
+                        </div>
+                        <ul id="just_online" class="just_online list-group list-group-flush"></ul>
+                    </div>
+                    <div class="tab-pane" id="bests" role="tabpanel">
+                        <ul id="rank_list" class="list-group list-group-flush"></ul>
+                    </div>
                 </div>
+
+                <div id="connectionInfo">Status: <span class="info">getrennt</span></div>
             </div>
 
-            <div id="connectionInfo">Status: <span class="info">getrennt</span></div>
+
+            <div class="claim-container">
+                <div class="claim">
+                    <h1>
+                        Elefanten<br class="visible-xs"/>jagdverein <br />
+                        TÖTET WAS TRÖTET e.V. <br />
+                        <br />
+                    </h1>
+                </div>
+            </div>
         </div>
 
 
-        <div class="claim-container">
-            <div class="claim">
-                <h1>
-                    Elefanten<br class="visible-xs"/>jagdverein <br />
-                    TÖTET WAS TRÖTET e.V. <br />
-                    <br />
-                </h1>
-            </div>
-        </div>
 
-        <div class="ele-container">
-            <div id="starter" class="ele-wrapper animated speed5 alive ka-rebound">
+        <div class="ele-container flex-item">
+            <div id="starter" class="ele-wrapper animated speed5 ltr alive ka-rebound">
                 <div class="ele-tail"></div>
                 <div class="ele-body">
                     <div class="ele-head">
@@ -92,9 +96,9 @@
             </div>
         </div>
 
-        <div class="expand-container"></div>
 
-        <footer>
+
+        <footer class="flex-item">
             <p>v1.3 proudly presented by - proto</p>
         </footer>
     </div>

@@ -8,14 +8,16 @@ $line-color: #808080;
 $eye-color: #FDFDFD;
 $fang-color: #FFF;
 $nail-color: #E0E0E0;
-$start-position: -20%;
+$left-start-position: -20%;
+$right-start-position: -25%;
 $shadow-color: rgba(74, 74, 74, 0.53);  //Set rgba for color opacity
 
 .ele-container {
-  height: 260px ;
+  height: 260px;
   overflow: visible;
-  position: relative;
+  position: absolute;
   width: 100%;
+  bottom: 40px;
 }
 
 body.pause .ele-wrapper {
@@ -24,20 +26,22 @@ body.pause .ele-wrapper {
 
 .ele-wrapper {
   @each $speed in 1, 2, 3, 4, 5 {
-    &.speed#{$speed} {
-      animation: ele-movement 1s infinite linear, ele-ahead $progress_time * $speed infinite linear;
+    @each $direction in ltr,rtl {
+      &.#{$direction}.speed#{$speed} {
+        animation: ele-movement 1s infinite linear, ele-ahead-#{$direction} $progress_time * $speed infinite linear;
 
-      &.shot.ka-rebound {
-        animation: ele-movement 1s infinite linear, ele-ahead $progress_time * $speed infinite linear, shot-animation 3s cubic-bezier(0.2, -0.55, 0.91, 0.94) forwards !important;
-        transform-origin: 0 100%
-      }
-      &.shot.ka-crash {
-        animation: ele-movement 1s infinite linear, ele-ahead $progress_time * $speed infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
-        top: 50%;
-      }
-      &.shot.ka-rotate {
-        animation: ele-movement 1s infinite linear, ele-ahead $progress_time * $speed infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important;
-        top: 0;
+        &.shot.ka-rebound {
+          animation: ele-movement 1s infinite linear, ele-ahead-#{$direction} $progress_time * $speed infinite linear, shot-animation 3s cubic-bezier(0.2, -0.55, 0.91, 0.94) forwards !important;
+          transform-origin: 0 100%
+        }
+        &.shot.ka-crash {
+          animation: ele-movement 1s infinite linear, ele-ahead-#{$direction} $progress_time * $speed infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important;
+          top: 50%;
+        }
+        &.shot.ka-rotate {
+          animation: ele-movement 1s infinite linear, ele-ahead-#{$direction} $progress_time * $speed infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important;
+          top: 0;
+        }
       }
     }
   }
@@ -81,7 +85,12 @@ body.pause .ele-wrapper {
   }
 }
 .ele-wrapper {
-  left: $start-position;
+  &.ltr {
+    left: $left-start-position;
+  }
+  &.rtl {
+    right: $right-start-position;
+  }
   position: absolute;
   top: 50%;
   transform: translate3D(-50%, -75%, 0);
@@ -553,12 +562,21 @@ div[class^="ele-leg-"] {
   }
 }
 
-@keyframes ele-ahead {
+@keyframes ele-ahead-ltr {
   0% {
-    left: $start-position;
+    left: $left-start-position;
   }
   100% {
     left: 115%;
+  }
+}
+
+@keyframes ele-ahead-rtl {
+  0% {
+    right: $right-start-position;
+  }
+  100% {
+    right: 115%;
   }
 }
 

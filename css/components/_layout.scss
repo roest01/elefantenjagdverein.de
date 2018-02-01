@@ -1,0 +1,31 @@
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+  height:100%;
+}
+
+.flex-item:nth-child(1) {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: stretch;
+  padding: 0 15px;
+}
+
+.flex-item:nth-child(2) {
+  order: 0;
+  flex: 2 1 auto;
+  align-self: stretch;
+}
+
+.flex-item:nth-child(3) {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: stretch;
+  p {
+    padding: 0 15px;
+  }
+}
