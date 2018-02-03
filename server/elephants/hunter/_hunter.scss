@@ -1,0 +1,82 @@
+.himage {
+  background-image: url(../server/elephants/hunter/hunter.svg#a);
+  width: 415px;
+  height: 900px;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  animation: hunter-animation 2.5s linear both infinite;
+
+}
+
+$width: 41px;
+$height: 55px;
+
+.hunterA {
+  background: url('../server/elephants/hunter/hunter.svg') no-repeat -23px -15px;
+  width: $width;
+  height: $height;
+}
+
+.hunterB {
+  background: url('../server/elephants/hunter/hunter.svg') no-repeat -71px -15px;
+  width: $width;
+  height: $height;
+}
+
+.hunterC {
+  background: url('../server/elephants/hunter/hunter.svg') no-repeat -120px -15px;
+  width: $width;
+  height: $height;
+}
+
+.hunterD {
+  background: url('../server/elephants/hunter/hunter.svg') no-repeat -20px -80px;
+  width: $width;
+  height: $height;
+}
+
+.hunterE {
+  background: url('../server/elephants/hunter/hunter.svg') no-repeat -72px -80px;
+  width: 42px;
+  height: $height;
+}
+
+.hunterF {
+  background: url('../server/elephants/hunter/hunter.svg') no-repeat -121px -80px;
+  width: 42px;
+  height: $height;
+}
+
+@keyframes hunter-animation {
+  0% {
+    background: url('../server/elephants/hunter/hunter.svg') no-repeat -83px -15px;
+    width: $width;
+    height: $height;
+  }
+  20% {
+    background: url('../server/elephants/hunter/hunter.svg') no-repeat -131px -15px;
+    width: $width;
+    height: $height;
+  }
+  40% {
+    background: url('../server/elephants/hunter/hunter.svg') no-repeat -180px -15px;
+    width: $width;
+    height: $height;
+     }
+  60% {
+    background: url('../server/elephants/hunter/hunter.svg') no-repeat -80px -80px;
+    width: $width;
+    height: $height;
+      }
+  80% {
+    background: url('../server/elephants/hunter/hunter.svg') no-repeat -132px -80px;
+    width: 42px;
+    height: $height;
+  }
+  100% {
+    background: url('../server/elephants/hunter/hunter.svg') no-repeat -181px -80px;
+    width: 42px;
+    height: $height;
+  }
+}
