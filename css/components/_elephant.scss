@@ -98,7 +98,7 @@ $transformPosition: translate3D(0%, 60%, 0);
   zoom: 0.5;
 
   &.killable {
-    cursor: url("../img/target.png"), auto;
+    cursor: url("../img/target.png") 17 17, auto;
   }
 
   &:target {
@@ -703,3 +703,4 @@ div[class^="ele-leg-"] {
 
 @import "../../server/elephants/lia/lia";
 @import "../../server/elephants/benjamin/benjamin";
+@import "../../server/elephants/hunter/hunter";

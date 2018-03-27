@@ -15,6 +15,14 @@ let ReceiverClass = function(server, client){
         client.updateActivePlayers(players);
     });
 
+    server.on('display hunter', function(player) {
+        console.log("(RC) display hunter", player);
+
+        if (client.gameStarted()){
+            client.generateElephant('hunter', {player: player});
+        }
+    });
+
     server.on('connected', function(clientInfo) {
         console.log("(RC): got clientInfo", clientInfo);
         client.setClientInfo(clientInfo);

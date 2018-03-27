@@ -1,4 +1,4 @@
-$progress_time: 5s;
+$progress_time: 8s;
 @import "components/layout";
 @import "components/progress";
 @import "components/elephant";
@@ -128,6 +128,7 @@ a {
 @media (max-width: 840px) {
   .leaderboard {
     visibility: hidden;
+    display:none;
     opacity:0;
   }
   .gameStarted {
@@ -137,6 +138,7 @@ a {
     }
     .leaderboard {
       visibility: visible;
+      display: initial;
       transition: opacity 2s;
       opacity:1;
     }

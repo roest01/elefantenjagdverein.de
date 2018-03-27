@@ -1,5 +1,7 @@
 {
+  "killable": false,
   "shootsRequired": 1,
-  "pointsPerKill": -10,
-  "allowedAtSameTime": 1
+  "pointsPerKill": 0,
+  "allowedAtSameTime": 3,
+  "spawn": "manually"
 }

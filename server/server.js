@@ -6,7 +6,7 @@ let Server = function(){
 
         return new Promise(function(resolve,reject){
             let redis = require('redis');
-            let connection = redis.createClient("6379", "redis");
+            let connection = redis.createClient("6379", "localhost");
 
             connection.on('error', function(e){
                 console.log(e.message);
@@ -115,8 +115,10 @@ let Server = function(){
                     name: user.name
                 });
                 server.serverInfo.syncInDatabase(server.serverInfo.getPlayerByID(user.id));
+                let player = server.serverInfo.getPlayerByID(user.id);
 
-                server.io.sockets.emit('update active player', [server.serverInfo.getPlayerByID(user.id)]);
+                server.io.sockets.emit('update active player', [player]);
+                server.io.sockets.emit('display hunter', player);
             });
 
             client.emit("server ready");

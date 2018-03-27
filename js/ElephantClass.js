@@ -11,6 +11,7 @@ let ElephantClass = function(transmitter){
     let elephantManager = this;
     let gamePause = false;
     let maximumElephants = 7; //same time
+    let maximumElephantsReserve = 2; //there are x slots for "special" one
     let helper = new HelperClass();
     let clientInfo = new ClientInfo();
 
@@ -22,7 +23,6 @@ let ElephantClass = function(transmitter){
             name: "default"
         }
     };
-    elephantManager.killedElephants = 0;
     elephantManager.deadBodies = [];
 
     /** ### Server Communication ## **/
@@ -106,24 +106,31 @@ let ElephantClass = function(transmitter){
             let id = elephant.attr('id');
             if (!!elephantManager.alive[id]){
                 let elephantInformations = elephantManager.alive[id];
+                let eleModuleInfo = elephantManager.getEleModuleInfo(elephantInformations.name);
                 elephantInformations.classes = elephant.attr('class');
                 elephantManager.deadBodies.push(elephantInformations);
                 delete elephantManager.alive[id];
-                elephantManager.killedElephants++;
 
                 transmitter.killedElephant(elephantInformations, clientInfo.user);
 
-                elephantManager.handleKill();
+                if (!!eleModuleInfo.killable){
+                    elephantManager.handleKill();
+                }
+
+                setTimeout(function(){
+                    elephant.hide('fast', function(){
+                        elephant.remove();
+
+                        if (!!eleModuleInfo.killable){
+                            //deploy new elephant only if removed one was a system generated and not swayed by other players
+                            elephantManager.generateElephant();
+                        }
+                    });
+                }, 2500);
             } else {
                 console.info("elephant "+id+" was never alive");
+                elephant.remove();
             }
-
-            setTimeout(function(){
-                elephant.hide('fast', function(){
-                    elephant.remove();
-                    elephantManager.generateElephant();
-                });
-            }, 2500);
         }
     };
 
@@ -193,7 +200,32 @@ let ElephantClass = function(transmitter){
         });
     };
 
-    elephantManager.filterAllowed = function(elephants){
+    elephantManager.getEleModuleInfo = function(type){
+      if (!!elephantManager.elephants[type]){
+          return elephantManager.elephants[type];
+      }
+    };
+
+    /**
+     *
+     * @param elephants array of elephant modules
+     * @param requestedType string (optional) request a specific elephant
+     * @returns {*}
+     */
+    elephantManager.filterAllowed = function(elephants, requestedType){
+        if (!!requestedType && !!elephants[requestedType]){
+            //a specific type is requested, proceed with him
+            elephants = [elephants[requestedType]];
+        } else {
+            //a random elephant is requested. remove "manually" type
+            jQuery.each(elephants, function(name, elephant){
+                if (elephant.spawn !== "automatically"){
+                    delete elephants[name];
+                }
+            });
+        }
+
+
         if(helper.objectSize(elephantManager.alive) > 0){
             const aLiveCounts = {};
             jQuery.each(elephantManager.alive, function(id, elephant){
@@ -215,17 +247,20 @@ let ElephantClass = function(transmitter){
             });
         }
 
+
         return elephants;
     };
 
     /**
      *
      * @param speed
+     * @param type string (optional) request specific module
+     * @param additionalInfo object (optional) further informations required by elephant module
      * @returns {Object} Elephant Object
      */
-    elephantManager.getElephant = function(speed){
+    elephantManager.getElephant = function(speed, type, additionalInfo){
         let elephants = jQuery.extend(true, {}, elephantManager.elephants); // prevent reference
-        elephants = elephantManager.filterAllowed(elephants);
+        elephants = elephantManager.filterAllowed(elephants, type);
 
         let elevantNames = Object.keys(elephants);
         let randomElephantAttr = elevantNames[Math.floor(Math.random()*elevantNames.length)];
@@ -233,7 +268,8 @@ let ElephantClass = function(transmitter){
 
         singleElephant.compiled = singleElephant.template({
             eleFolder: "server/elephants/"+singleElephant.name+"/",
-            speed: speed
+            speed: speed,
+            additionalInfo: additionalInfo
         });
         return singleElephant;
     };
@@ -241,13 +277,19 @@ let ElephantClass = function(transmitter){
     /**
      * @public
      */
-    elephantManager.generateElephant = function(){
+    elephantManager.generateElephant = function(type, additionalInfo){
         let elephantManager = this;
         let container = jQuery('.ele-container');
 
-        if (helper.objectSize(elephantManager.alive) < maximumElephants && !gamePause){
+        let aliveElephants = helper.objectSize(elephantManager.alive);
+
+        if (
+            (aliveElephants < maximumElephants ||
+                (aliveElephants < maximumElephants + maximumElephantsReserve && !!type)) //2 slots for explicit requested elephants
+            && !gamePause
+        ){
             let randomSpeed = helper.getRandomInt(1,5);
-            let elephant = elephantManager.getElephant(randomSpeed);
+            let elephant = elephantManager.getElephant(randomSpeed, type, additionalInfo);
             let id = elephantManager.getUniqueIdForElephant(elephant);
 
             elephantManager.alive[id] = {
@@ -257,9 +299,16 @@ let ElephantClass = function(transmitter){
 
             container.append(jQuery(elephant.compiled).attr('id', id));
 
-            jQuery("#"+id).click(function(){
-                elephantManager.killElephant(jQuery(this));
-            });
+            if (!!elephant.killable){
+                jQuery("#"+id).click(function(){
+                    elephantManager.killElephant(jQuery(this));
+                });
+            } else {
+                window.setTimeout(function(){
+                    elephantManager.killElephant(jQuery("#"+id));
+                }, ((8*randomSpeed) * 1000) - 2500);
+                //5 sec basic time (see scss code) * speed in microsecounds minus animation time to hide
+            }
 
             let newElephantIn = helper.getRandomInt(5,20) * 1123; //microtime
             console.log("### new elephant in "+newElephantIn / 1000);
