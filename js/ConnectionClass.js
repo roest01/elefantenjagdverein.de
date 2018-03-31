@@ -4,9 +4,10 @@ let ConnectionClass = function(){
 
     connection.connect = function(){
         let userid = connection.getUserid();
-        let serverConnection = io('http://'+window.location.hostname+':3000?userid='+userid, {
+        let serverConnection = io('//'+window.location.hostname+':3300?userid='+userid, {
             path: '/eleServer',
-            forceNew: false
+            forceNew: false,
+            secure:true
         });
 
         serverConnection.on('pong', function(){

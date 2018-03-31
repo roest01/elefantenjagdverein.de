@@ -627,7 +627,7 @@ div[class^="ele-leg-"] {
     transform: rotate(0deg) scale(-1, 1); } }
 .benjamin img.eleImg {
   width: 150px;
-  margin-top: -600px;
+  margin-top: -300px;
   animation: shake 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite; }
 .benjamin.rtl img.eleImg {
   animation: shake-rtl 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite; }

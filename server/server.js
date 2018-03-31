@@ -6,7 +6,7 @@ let Server = function(){
 
         return new Promise(function(resolve,reject){
             let redis = require('redis');
-            let connection = redis.createClient("6379", "localhost");
+            let connection = redis.createClient("6379", "redis");
 
             connection.on('error', function(e){
                 console.log(e.message);
@@ -20,9 +20,10 @@ let Server = function(){
 
     server._construct = function(){
         // Let’s make node/socketio listen on port 3000
-        server.io = require('socket.io')(3000, {
+        server.io = require('socket.io')(3300, {
             path: '/eleServer',
-            pingInterval: 30000
+            pingInterval: 30000,
+            secure: true
         });
 
         server.connectRedis().then(function(connection){
