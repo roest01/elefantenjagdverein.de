@@ -168,15 +168,16 @@ body.pause .ele-wrapper {
 .ele-wrapper {
   transform: translate3D(0%, 60%, 0);
   position: absolute;
-  bottom: 203px;
-  width: 200px;
-  zoom: 0.5; }
+  bottom: 121.8px;
+  width: 120px; }
   .ele-wrapper.ltr {
     left: -20%; }
   .ele-wrapper.rtl {
     right: -25%; }
+  .ele-wrapper img.eleImg {
+    width: 156px; }
   .ele-wrapper.killable {
-    cursor: url("../img/target.png") 17 15, auto; }
+    cursor: url("../img/target.png") 17 17, auto; }
   .ele-wrapper:target {
     animation: none; }
 
@@ -184,7 +185,7 @@ body.pause .ele-wrapper {
   background: linear-gradient(to bottom, #cfcfcf 0%, #9c9c9c 70%);
   border: 1px solid #808080;
   border-radius: 100px 50px 70px 60px;
-  height: 165px;
+  height: 99px;
   position: relative;
   width: 100%;
   z-index: 1; }
@@ -192,56 +193,56 @@ body.pause .ele-wrapper {
 .ele-tail {
   border-top: 7px solid #808080;
   border-radius: 50%;
-  height: 50px;
+  height: 30px;
   position: absolute;
   transform: translate3d(-3%, 69%, 0) rotateZ(-20deg);
-  width: 64px; }
+  width: 38.4px; }
   .ele-tail:before {
     border-top: 5px solid #C2C2C2;
     border-radius: 50%;
     content: '';
-    height: 50px;
+    height: 30px;
     position: absolute;
-    width: 64px;
-    top: -6px; }
+    width: 38.4px;
+    top: -3.6px; }
 
 .ele-head {
   background: #C2C2C2;
   border-radius: 50%;
   border-top: 1px solid #808080;
   box-shadow: -1px 1px 2px #808080;
-  height: 150px;
+  height: 90px;
   position: absolute;
   transform: translate3d(80%, -25%, 0);
-  width: 155px; }
+  width: 93px; }
 
 .ele-eyes:before, .ele-eyes:after {
   background-color: #FDFDFD;
   border-radius: 50%;
-  bottom: -48px;
+  bottom: -28.8px;
   content: '';
-  height: 10px;
+  height: 6px;
   position: absolute;
-  width: 10px; }
+  width: 6px; }
 
 .ele-eyebrows {
   background: linear-gradient(to top, #C2C2C2 20%, #9c9c9c 100%);
   border-radius: 10px;
   border-top: 1px solid #808080;
-  bottom: 88px;
-  height: 20px;
-  left: 92px;
+  bottom: 52.8px;
+  height: 12px;
+  left: 55.2px;
   position: absolute;
-  width: 60px; }
+  width: 36px; }
 
 .ele-eyes {
   left: 60%;
   position: absolute;
   top: 6%; }
   .ele-eyes:before {
-    left: 41px; }
+    left: 24.6px; }
   .ele-eyes:after {
-    left: 10px; }
+    left: 6px; }
 
 .ele-ear {
   background: linear-gradient(to left, #C2C2C2 10%, darkgray 100%);
@@ -249,22 +250,22 @@ body.pause .ele-wrapper {
   border-left: 1px solid #808080;
   border-top: 1px solid #808080;
   border-radius: 60px 0 0 50%;
-  height: 110px;
-  left: -22px;
+  height: 66px;
+  left: -13.2px;
   position: absolute;
-  top: 25px;
+  top: 15px;
   transform: rotateZ(-10deg);
-  width: 60px; }
+  width: 36px; }
 
 .ele-mouth {
   background: linear-gradient(to bottom, #C2C2C2 50%, darkgray 100%);
   border-radius: 0px 100% 0px 0px;
   border-top: 2px solid #808080;
-  height: 160px;
+  height: 96px;
   left: 83%;
   position: absolute;
   top: 35%;
-  width: 30px; }
+  width: 18px; }
   .ele-mouth:before {
     background-color: darkgray;
     border-bottom: 1px solid #808080;
@@ -272,72 +273,72 @@ body.pause .ele-wrapper {
     border-radius: 8px;
     bottom: 0;
     content: '';
-    height: 15px;
-    left: -5px;
+    height: 9px;
+    left: -3px;
     position: absolute;
-    width: 40px; }
+    width: 24px; }
 
 .ele-fang-front, .ele-fang-back {
   border-bottom: 12px solid #FFF;
   border-radius: 50%;
-  height: 40px;
+  height: 24px;
   position: absolute;
   transform: rotateZ(20deg);
-  width: 50px; }
+  width: 30px; }
 
 .ele-fang-front {
   box-shadow: 0px 1px 0px #808080;
-  left: 100px;
-  top: 100px; }
+  left: 60px;
+  top: 60px; }
   .ele-fang-front:before {
     background-color: #C2C2C2;
-    bottom: -10px;
+    bottom: -6px;
     content: '';
-    height: 45px;
-    left: -5px;
+    height: 27px;
+    left: -3px;
     position: absolute;
-    width: 15px; }
+    width: 9px; }
   .ele-fang-front:after {
     background-color: #C2C2C2;
     border-radius: 0 50% 50% 0;
-    bottom: -14px;
+    bottom: -8.4px;
     box-shadow: 1px 1px 0px #808080;
     content: '';
-    height: 21px;
-    left: 6px;
+    height: 12.6px;
+    left: 3.6px;
     position: absolute;
     transform: rotateZ(20deg);
-    width: 15px; }
+    width: 9px; }
 
 .ele-fang-back {
   border-bottom-color: #e6e6e6;
-  left: 115px;
-  top: 95px;
+  left: 69px;
+  top: 57px;
   z-index: -1; }
   .ele-fang-back:before {
     background-color: #C2C2C2;
-    bottom: -10px;
+    bottom: -6px;
     content: '';
-    height: 25px;
+    height: 15px;
     position: absolute;
-    width: 30px; }
+    width: 18px; }
 
 div[class^="ele-leg-"] {
   border-left: 1px solid #808080;
-  height: 88px;
+  height: 52.8px;
   position: absolute;
-  width: 50px; }
+  width: 30px; }
   div[class^="ele-leg-"]:before {
     background-color: rgba(74, 74, 74, 0.53);
     border-radius: 50%;
-    bottom: -30px;
+    bottom: -18px;
     box-shadow: 0 0 2px rgba(74, 74, 74, 0.53);
     content: '';
-    height: 10px;
+    height: 6px;
     left: 50%;
     position: absolute;
     transform: translateX(-50%) rotateZ(0deg);
-    width: 50px; }
+    width: 30px; }
 
 .ele-leg-front {
   background-color: #9c9c9c;
@@ -391,39 +392,39 @@ div[class^="ele-leg-"] {
   border-radius: 10px 10px 0 0;
   bottom: 0;
   content: '';
-  height: 15px;
+  height: 9px;
   position: absolute;
-  width: 11px; }
+  width: 6.6px; }
 
 .ele-foot {
   border-radius: 25px 25px 35% 40%;
-  bottom: -17.5px;
+  bottom: -10.5px;
   box-shadow: -1px 1px 0px #808080;
-  height: 35px;
+  height: 21px;
   left: 50%;
   overflow: hidden;
   position: absolute;
   transform: translateX(-49%) rotateZ(0deg);
-  width: 55px; }
+  width: 33px; }
   .ele-foot:before {
-    right: -7.5px; }
+    right: -4.5px; }
   .ele-foot:after {
-    bottom: -3px;
-    right: 5px; }
+    bottom: -1.8px;
+    right: 3px; }
 
 @keyframes leg-animation {
   0% {
-    height: 65px;
+    height: 39px;
     transform: translate3d(0, -90%, 0) rotate3d(0, 0, 1, 10deg) translate3d(0, 30%, 0); }
   25% {
-    height: 40px; }
+    height: 24px; }
   50% {
-    height: 65px;
+    height: 39px;
     transform: translate3d(0, -90%, 0) rotate3d(0, 0, 1, -15deg) translate3d(0, 30%, 0); }
   75% {
-    height: 65px; }
+    height: 39px; }
   100% {
-    height: 65px;
+    height: 39px;
     transform: translate3d(0, -90%, 0) rotate3d(0, 0, 1, 10deg) translate3d(0, 30%, 0); } }
 @keyframes foot-animation {
   0% {
@@ -439,19 +440,19 @@ div[class^="ele-leg-"] {
 @keyframes foot-shadow-animation {
   0% {
     transform: translateX(-50%) rotateZ(-8deg);
-    bottom: -20px;
-    width: 50px; }
+    bottom: -12px;
+    width: 30px; }
   25% {
-    bottom: -30px;
-    width: 40px; }
+    bottom: -18px;
+    width: 24px; }
   50% {
     transform: translateX(-50%) rotateZ(13deg);
-    bottom: -20px;
-    width: 50px; }
+    bottom: -12px;
+    width: 30px; }
   100% {
     transform: translateX(-50%) rotateZ(-8deg);
-    bottom: -20px;
-    width: 50px; } }
+    bottom: -12px;
+    width: 30px; } }
 @keyframes fallingLeaves {
   0% {
     opacity: 1;
@@ -496,13 +497,13 @@ div[class^="ele-leg-"] {
     transform: translate3D(0%, 60%, 0) rotate(0deg); } }
 @keyframes eyes-blink {
   0% {
-    height: 10px; }
+    height: 6px; }
   3% {
-    height: 1px; }
+    height: 0.6px; }
   5% {
-    height: 10px; }
+    height: 6px; }
   100% {
-    height: 10px; } }
+    height: 6px; } }
 @keyframes ele-movement {
   0% {
     transform: translate3D(0%, 60%, 0); }
@@ -522,21 +523,21 @@ div[class^="ele-leg-"] {
     right: 115%; } }
 @keyframes mouth-movement {
   0% {
-    height: 160px;
-    width: 28px; }
+    height: 96px;
+    width: 16.8px; }
   50% {
-    height: 150px;
-    width: 30px; }
+    height: 90px;
+    width: 18px; }
   100% {
-    height: 160px;
-    width: 28px; } }
+    height: 96px;
+    width: 16.8px; } }
 @keyframes mouth-after-movement {
   0% {
-    width: 37px; }
+    width: 22.2px; }
   50% {
-    width: 40px; }
+    width: 24px; }
   100% {
-    width: 37px; } }
+    width: 22.2px; } }
 @keyframes tail-movement {
   0% {
     transform: translate3d(-3%, 69%, 0) rotateZ(-20deg); }
@@ -557,32 +558,32 @@ div[class^="ele-leg-"] {
     transform: translate3d(80%, -22%, 0) rotateZ(3deg); } }
 @keyframes body-movement {
   0% {
-    height: 160px;
-    margin-top: 5px; }
+    height: 96px;
+    margin-top: 3px; }
   50% {
-    height: 162.5px;
-    margin-top: 2.5px; }
+    height: 97.5px;
+    margin-top: 1.5px; }
   100% {
-    height: 160px;
-    margin-top: 5px; } }
+    height: 96px;
+    margin-top: 3px; } }
 @keyframes ear-movement {
   0% {
-    height: 115px; }
+    height: 69px; }
   50% {
-    height: 110px; }
+    height: 66px; }
   100% {
-    height: 115px; } }
+    height: 69px; } }
 @keyframes eyebrows-movement {
   0% {
-    height: 18px; }
+    height: 10.8px; }
   50% {
-    height: 20px; }
+    height: 12px; }
   100% {
-    height: 18px; } }
+    height: 10.8px; } }
 .initialTarget {
   text-align: center;
-  margin-top: 20px;
-  margin-left: 35px;
+  margin-top: 12px;
+  margin-left: 21px;
   opacity: 0;
   animation: initial-target-animation 1s steps(5, start) infinite;
   -webkit-animation: initial-target-animation 1s steps(5, start) infinite; }
@@ -595,8 +596,8 @@ div[class^="ele-leg-"] {
   100% {
     margin-top: 25px;
     opacity: 1; } }
-.lia img {
-  width: 200px;
+.lia img.eleImg {
+  width: 120px;
   animation: ele-jump 1s infinite cubic-bezier(0, 0.31, 1, 1); }
 
 @keyframes ele-jump {
@@ -606,8 +607,8 @@ div[class^="ele-leg-"] {
     transform: rotate(19deg); }
   100% {
     transform: rotate(0deg); } }
-.benjamin img {
-  width: 250px;
+.benjamin img.eleImg {
+  width: 150px;
   margin-top: -600px;
   animation: shake 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite; }
 
@@ -619,20 +620,21 @@ div[class^="ele-leg-"] {
   100% {
     transform: rotate(-5deg); } }
 .hunter {
-  margin-bottom: -53px;
-  zoom: 0.7 !important;
-  width: 140px; }
+  width: 112px;
+  bottom: 140px;
+  zoom: 0.8; }
   .hunter .name {
     display: block;
-    padding-left: 30px;
+    text-align: center;
     margin-bottom: -15px; }
 
 .himage {
   width: 140px;
   height: 180px;
-  background-image: url(http://elefantenjagdverein.de/server/elephants/hunter/hunter.svg);
+  background-image: url(../server/elephants/hunter/hunter.svg);
   background-repeat: no-repeat;
   background-size: 600px 400px;
+  -moz-transform: scale(0.8);
   animation: hunter-animation 1s steps(1) both infinite; }
 
 @keyframes hunter-animation {
@@ -760,10 +762,6 @@ a {
     display: none; }
 
   .claim h1 {
-    font-size: 5vw; }
-
-  .ele-wrapper {
-    zoom: 0.4;
-    bottom: 240px; } }
+    font-size: 5vw; } }
 
 /*# sourceMappingURL=style.css.map */

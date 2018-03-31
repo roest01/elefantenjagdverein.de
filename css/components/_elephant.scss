@@ -12,6 +12,10 @@ $left-start-position: -20%;
 $right-start-position: -25%;
 $shadow-color: rgba(74, 74, 74, 0.53);  //Set rgba for color opacity
 
+$eleSizeMultiplicator: 0.6;
+$eleWidth: 200px*$eleSizeMultiplicator;
+
+
 .ele-container {
   overflow: hidden;
   width: 100%;
@@ -93,9 +97,12 @@ $transformPosition: translate3D(0%, 60%, 0);
   //top: 50%;
   transform: $transformPosition;
   position: absolute;
-  bottom: 203px;
-  width: 200px;
-  zoom: 0.5;
+  bottom: 203px*$eleSizeMultiplicator;
+  width: $eleWidth;
+
+  img.eleImg {
+    width: $eleWidth + ($eleWidth * 0.3);
+  }
 
   &.killable {
     cursor: url("../img/target.png") 17 17, auto;
@@ -110,7 +117,7 @@ $transformPosition: translate3D(0%, 60%, 0);
   background: linear-gradient(to bottom, lighten($main-color, 5%) 0%, darken($main-color, 15%) 70%);
   border: 1px solid $line-color;
   border-radius: 100px 50px 70px 60px;
-  height: 165px;
+  height: 165px*$eleSizeMultiplicator;
   position: relative;
   width: 100%;
   z-index: 1;
@@ -119,19 +126,19 @@ $transformPosition: translate3D(0%, 60%, 0);
 .ele-tail {
   border-top: 7px solid $line-color;
   border-radius: 50%;
-  height: 50px;
+  height: 50px*$eleSizeMultiplicator;
   position: absolute;
   transform: translate3d(-3%, 69%, 0) rotateZ(-20deg);
-  width: 64px;
+  width: 64px*$eleSizeMultiplicator;
 
   &:before {
     border-top: 5px solid $main-color;
     border-radius: 50%;
     content: '';
-    height: 50px;
+    height: 50px*$eleSizeMultiplicator;
     position: absolute;
-    width: 64px;
-    top: -6px;
+    width: 64px*$eleSizeMultiplicator;
+    top: -6px*$eleSizeMultiplicator;
   }
 }
 
@@ -140,31 +147,31 @@ $transformPosition: translate3D(0%, 60%, 0);
   border-radius: 50%;
   border-top: 1px solid $line-color;
   box-shadow: -1px 1px 2px $line-color;
-  height: 150px;
+  height: 150px*$eleSizeMultiplicator;
   position: absolute;
   transform: translate3d(80%, -25%, 0);
-  width: 155px;
+  width: 155px*$eleSizeMultiplicator;
 }
 
 %ele-eye {
   background-color: $eye-color;
   border-radius: 50%;
-  bottom: -48px;
+  bottom: -48px*$eleSizeMultiplicator;
   content: '';
-  height: 10px;
+  height: 10px*$eleSizeMultiplicator;
   position: absolute;
-  width: 10px;
+  width: 10px*$eleSizeMultiplicator;
 }
 
 .ele-eyebrows {
   background: linear-gradient(to top, $main-color 20%, darken($main-color, 15%) 100%);
   border-radius: 10px;
   border-top: 1px solid $line-color;
-  bottom: 88px;
-  height: 20px;
-  left: 92px;
+  bottom: 88px*$eleSizeMultiplicator;
+  height: 20px*$eleSizeMultiplicator;
+  left: 92px*$eleSizeMultiplicator;
   position: absolute;
-  width: 60px;
+  width: 60px*$eleSizeMultiplicator;
 }
 
 .ele-eyes {
@@ -175,13 +182,13 @@ $transformPosition: translate3D(0%, 60%, 0);
   &:before {
     @extend %ele-eye;
 
-    left: 41px;
+    left: 41px*$eleSizeMultiplicator;
   }
 
   &:after {
     @extend %ele-eye;
 
-    left: 10px;
+    left: 10px*$eleSizeMultiplicator;
   }
 
 }
@@ -192,23 +199,23 @@ $transformPosition: translate3D(0%, 60%, 0);
   border-left: 1px solid $line-color;
   border-top: 1px solid $line-color;
   border-radius: 60px 0 0 50%;
-  height: 110px;
-  left: -22px;
+  height: 110px*$eleSizeMultiplicator;
+  left: -22px*$eleSizeMultiplicator;
   position: absolute;
-  top: 25px;
+  top: 25px*$eleSizeMultiplicator;
   transform: rotateZ(-10deg);
-  width: 60px;
+  width: 60px*$eleSizeMultiplicator;
 }
 
 .ele-mouth {
   background: linear-gradient(to bottom, $main-color 50%, darken($main-color, 10%) 100%);
   border-radius: 0px 100% 0px 0px;
   border-top: 2px solid $line-color;
-  height: 160px;
+  height: 160px*$eleSizeMultiplicator;
   left: 83%;
   position: absolute;
   top: 35%;
-  width: 30px;
+  width: 30px*$eleSizeMultiplicator;
 
   &:before {
     background-color: darken($main-color, 10%);
@@ -217,49 +224,49 @@ $transformPosition: translate3D(0%, 60%, 0);
     border-radius: 8px;
     bottom: 0;
     content: '';
-    height: 15px;
-    left: -5px;
+    height: 15px*$eleSizeMultiplicator;
+    left: -5px*$eleSizeMultiplicator;
     position: absolute;
-    width: 40px;
+    width: 40px*$eleSizeMultiplicator;
   }
 }
 
 %ele-fang {
   border-bottom: 12px solid $fang-color;
   border-radius: 50%;
-  height: 40px;
+  height: 40px*$eleSizeMultiplicator;
   position: absolute;
   transform: rotateZ(20deg);
-  width: 50px;
+  width: 50px*$eleSizeMultiplicator;
 }
 
 .ele-fang-front {
   @extend %ele-fang;
   box-shadow: 0px 1px 0px $line-color;
-  left: 100px;
-  top: 100px;
+  left: 100px*$eleSizeMultiplicator;
+  top: 100px*$eleSizeMultiplicator;
 
   &:before {
     background-color: $main-color;
-    bottom: -10px;
+    bottom: -10px*$eleSizeMultiplicator;
     content: '';
-    height: 45px;
-    left: -5px;
+    height: 45px*$eleSizeMultiplicator;
+    left: -5px*$eleSizeMultiplicator;
     position: absolute;
-    width: 15px;
+    width: 15px*$eleSizeMultiplicator;
   }
 
   &:after {
     background-color: $main-color;
     border-radius: 0 50% 50% 0;
-    bottom: -14px;
+    bottom: -14px*$eleSizeMultiplicator;
     box-shadow: 1px 1px 0px $line-color;
     content: '';
-    height: 21px;
-    left: 6px;
+    height: 21px*$eleSizeMultiplicator;
+    left: 6px*$eleSizeMultiplicator;
     position: absolute;
     transform: rotateZ(20deg);
-    width: 15px;
+    width: 15px*$eleSizeMultiplicator;
   }
 }
 
@@ -267,37 +274,37 @@ $transformPosition: translate3D(0%, 60%, 0);
   @extend %ele-fang;
 
   border-bottom-color: darken($fang-color, 10%);
-  left: 115px;
-  top: 95px;
+  left: 115px*$eleSizeMultiplicator;
+  top: 95px*$eleSizeMultiplicator;
   z-index: -1;
 
   &:before {
     background-color: $main-color;
-    bottom: -10px;
+    bottom: -10px*$eleSizeMultiplicator;
     content: '';
-    height: 25px;
+    height: 25px*$eleSizeMultiplicator;
     position: absolute;
-    width: 30px;
+    width: 30px*$eleSizeMultiplicator;
   }
 }
 
 div[class^="ele-leg-"] {
   border-left: 1px solid $line-color;
-  height: 88px;
+  height: 88px*$eleSizeMultiplicator;
   position: absolute;
-  width: 50px;
+  width: 50px*$eleSizeMultiplicator;
 
   &:before {
     background-color: $shadow-color;
     border-radius: 50%;
-    bottom: -30px;
+    bottom: -30px*$eleSizeMultiplicator;
     box-shadow: 0 0 2px $shadow-color;
     content: '';
-    height: 10px;
+    height: 10px*$eleSizeMultiplicator;
     left: 50%;
     position: absolute;
     transform: translateX(-50%) rotateZ(0deg);
-    width: 50px;
+    width: 50px*$eleSizeMultiplicator;
   }
 }
 
@@ -381,53 +388,53 @@ div[class^="ele-leg-"] {
   border-radius: 10px 10px 0 0;
   bottom: 0;
   content: '';
-  height: 15px;
+  height: 15px*$eleSizeMultiplicator;
   position: absolute;
-  width: 11px;
+  width: 11px*$eleSizeMultiplicator;
 }
 
 .ele-foot {
   border-radius: 25px 25px 35% 40%;
-  bottom: -17.5px;
+  bottom: -17.5px*$eleSizeMultiplicator;
   box-shadow: -1px 1px 0px $line-color;
-  height: 35px;
+  height: 35px*$eleSizeMultiplicator;
   left: 50%;
   overflow: hidden;
   position: absolute;
   transform: translateX(-49%) rotateZ(0deg);
-  width: 55px;
+  width: 55px*$eleSizeMultiplicator;
 
   &:before {
     @extend %ele-nail;
 
-    right: -7.5px;
+    right: -7.5px*$eleSizeMultiplicator;
   }
 
   &:after {
     @extend %ele-nail;
 
-    bottom: -3px;
-    right: 5px;
+    bottom: -3px*$eleSizeMultiplicator;
+    right: 5px*$eleSizeMultiplicator;
   }
 }
 
 @keyframes leg-animation {
   0% {
-    height: 65px;
+    height: 65px*$eleSizeMultiplicator;
     transform: translate3d(0, -90%, 0) rotate3d(0, 0, 1, 10deg) translate3d(0, 30%, 0);
   }
   25% {
-    height: 40px;
+    height: 40px*$eleSizeMultiplicator;
   }
   50% {
-    height: 65px;
+    height: 65px*$eleSizeMultiplicator;
     transform: translate3d(0, -90%, 0) rotate3d(0, 0, 1, -15deg) translate3d(0, 30%, 0);
   }
   75% {
-    height: 65px;
+    height: 65px*$eleSizeMultiplicator;
   }
   100% {
-    height: 65px;
+    height: 65px*$eleSizeMultiplicator;
     transform: translate3d(0, -90%, 0) rotate3d(0, 0, 1, 10deg) translate3d(0, 30%, 0);
   }
 }
@@ -453,22 +460,22 @@ div[class^="ele-leg-"] {
 @keyframes foot-shadow-animation {
   0% {
     transform: translateX(-50%) rotateZ(-8deg);
-    bottom: -20px;
-    width: 50px;
+    bottom: -20px*$eleSizeMultiplicator;
+    width: 50px*$eleSizeMultiplicator;
   }
   25% {
-    bottom: -30px;
-    width: 40px;
+    bottom: -30px*$eleSizeMultiplicator;
+    width: 40px*$eleSizeMultiplicator;
   }
   50% {
     transform: translateX(-50%) rotateZ(13deg);
-    bottom: -20px;
-    width: 50px;
+    bottom: -20px*$eleSizeMultiplicator;
+    width: 50px*$eleSizeMultiplicator;
   }
   100% {
     transform: translateX(-50%) rotateZ(-8deg);
-    bottom: -20px;
-    width: 50px;
+    bottom: -20px*$eleSizeMultiplicator;
+    width: 50px*$eleSizeMultiplicator;
   }
 }
 
@@ -539,16 +546,16 @@ div[class^="ele-leg-"] {
 
 @keyframes eyes-blink {
   0% {
-    height: 10px
+    height: 10px*$eleSizeMultiplicator
   }
   3% {
-    height: 1px
+    height: 1px*$eleSizeMultiplicator
   }
   5% {
-    height: 10px
+    height: 10px*$eleSizeMultiplicator
   }
   100% {
-    height: 10px
+    height: 10px*$eleSizeMultiplicator
   }
 }
 
@@ -584,28 +591,28 @@ div[class^="ele-leg-"] {
 
 @keyframes mouth-movement {
   0% {
-    height: 160px;
-    width: 28px;
+    height: 160px*$eleSizeMultiplicator;
+    width: 28px*$eleSizeMultiplicator;
   }
   50% {
-    height: 150px;
-    width: 30px;
+    height: 150px*$eleSizeMultiplicator;
+    width: 30px*$eleSizeMultiplicator;
   }
   100% {
-    height: 160px;
-    width: 28px;
+    height: 160px*$eleSizeMultiplicator;
+    width: 28px*$eleSizeMultiplicator;
   }
 }
 
 @keyframes mouth-after-movement {
   0% {
-    width: 37px;
+    width: 37px*$eleSizeMultiplicator;
   }
   50% {
-    width: 40px;
+    width: 40px*$eleSizeMultiplicator;
   }
   100% {
-    width: 37px;
+    width: 37px*$eleSizeMultiplicator;
   }
 }
 
@@ -642,47 +649,47 @@ div[class^="ele-leg-"] {
 
 @keyframes body-movement {
   0% {
-    height: 160px;
-    margin-top: 5px;
+    height: 160px*$eleSizeMultiplicator;
+    margin-top: 5px*$eleSizeMultiplicator;
   }
   50% {
-    height: 162.5px;
-    margin-top: 2.5px;
+    height: 162.5px*$eleSizeMultiplicator;
+    margin-top: 2.5px*$eleSizeMultiplicator;
   }
   100% {
-    height: 160px;
-    margin-top: 5px;
+    height: 160px*$eleSizeMultiplicator;
+    margin-top: 5px*$eleSizeMultiplicator;
   }
 }
 
 @keyframes ear-movement {
   0% {
-    height: 115px;
+    height: 115px*$eleSizeMultiplicator;
   }
   50% {
-    height: 110px;
+    height: 110px*$eleSizeMultiplicator;
   }
   100% {
-    height: 115px;
+    height: 115px*$eleSizeMultiplicator;
   }
 }
 
 @keyframes eyebrows-movement {
   0% {
-    height: 18px;
+    height: 18px*$eleSizeMultiplicator;
   }
   50% {
-    height: 20px;
+    height: 20px*$eleSizeMultiplicator;
   }
   100% {
-    height: 18px;
+    height: 18px*$eleSizeMultiplicator;
   }
 }
 
 .initialTarget {
   text-align: center;
-  margin-top: 20px;
-  margin-left: 35px;
+  margin-top: 20px*$eleSizeMultiplicator;
+  margin-left: 35px*$eleSizeMultiplicator;
   opacity:0;
   animation: initial-target-animation 1s steps(5, start) infinite;
   -webkit-animation: initial-target-animation 1s steps(5, start) infinite;

@@ -1,6 +1,6 @@
 .benjamin {
-  img {
-    width: 250px;
+  img.eleImg {
+    width: 250px*$eleSizeMultiplicator;
     margin-top: -600px;
     animation: shake 2.5s cubic-bezier(.36,.07,.19,.97) both infinite;
   }
