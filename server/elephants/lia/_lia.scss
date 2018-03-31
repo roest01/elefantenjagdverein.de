@@ -3,6 +3,11 @@
     width: 200px*$eleSizeMultiplicator;
     animation: ele-jump 1s infinite cubic-bezier(0, 0.31, 1, 1);
   }
+  &.rtl {
+    img.eleImg {
+      animation: ele-jump-rtl 1s infinite cubic-bezier(0, 0.31, 1, 1);
+    }
+  }
 }
 
 @keyframes ele-jump {
@@ -16,5 +21,19 @@
 
   100% {
     transform:  rotate(0deg) ;
+  }
+}
+
+@keyframes ele-jump-rtl {
+  0% {
+    transform: rotate(0deg) scale(-1, 1);
+  }
+
+  50% {
+    transform:  rotate(-19deg) scale(-1, 1);
+  }
+
+  100% {
+    transform:  rotate(0deg) scale(-1, 1);
   }
 }

@@ -280,6 +280,7 @@ let ElephantClass = function(transmitter){
     elephantManager.generateElephant = function(type, additionalInfo){
         let elephantManager = this;
         let container = jQuery('.ele-container');
+        if (!additionalInfo) { additionalInfo = {} }
 
         let aliveElephants = helper.objectSize(elephantManager.alive);
 
@@ -289,6 +290,7 @@ let ElephantClass = function(transmitter){
             && !gamePause
         ){
             let randomSpeed = helper.getRandomInt(1,5);
+            additionalInfo.movingDirection = (helper.getRandomInt(1,2) === 1 ? "ltr" : "rtl"); //decide about movingDirection
             let elephant = elephantManager.getElephant(randomSpeed, type, additionalInfo);
             let id = elephantManager.getUniqueIdForElephant(elephant);
 
@@ -306,7 +308,7 @@ let ElephantClass = function(transmitter){
             } else {
                 window.setTimeout(function(){
                     elephantManager.killElephant(jQuery("#"+id));
-                }, ((8*randomSpeed) * 1000) - 2500);
+                }, ((15*randomSpeed) * 1000) - 2500);
                 //5 sec basic time (see scss code) * speed in microsecounds minus animation time to hide
             }
 

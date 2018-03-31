@@ -36,8 +36,8 @@
     background: #2187e7;
     position: absolute;
     box-shadow: 0 0 10px 1px rgba(0, 198, 255, 0.7);
-    -moz-animation: fullexpand 8s linear infinite;
-    -webkit-animation: fullexpand 8s linear infinite; }
+    -moz-animation: fullexpand 15s linear infinite;
+    -webkit-animation: fullexpand 15s linear infinite; }
 
 @keyframes fullexpand {
   0% {
@@ -55,95 +55,95 @@ body.pause .ele-wrapper {
   animation-play-state: paused !important; }
 
 .ele-wrapper.ltr.speed1 {
-  animation: ele-movement 1s infinite linear, ele-ahead-ltr 8s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-ltr 15s infinite linear; }
   .ele-wrapper.ltr.speed1.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 8s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 15s infinite linear, shot-animation-ltr 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.ltr.speed1.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 8s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 15s infinite linear, shot-animation-ltr 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.ltr.speed1.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 8s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 15s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper.rtl.speed1 {
-  animation: ele-movement 1s infinite linear, ele-ahead-rtl 8s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-rtl 15s infinite linear; }
   .ele-wrapper.rtl.speed1.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 8s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 15s infinite linear, shot-animation-rtl 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.rtl.speed1.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 8s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 15s infinite linear, shot-animation-rtl 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.rtl.speed1.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 8s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 15s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper.ltr.speed2 {
-  animation: ele-movement 1s infinite linear, ele-ahead-ltr 16s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-ltr 30s infinite linear; }
   .ele-wrapper.ltr.speed2.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 16s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 30s infinite linear, shot-animation-ltr 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.ltr.speed2.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 16s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 30s infinite linear, shot-animation-ltr 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.ltr.speed2.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 16s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 30s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper.rtl.speed2 {
-  animation: ele-movement 1s infinite linear, ele-ahead-rtl 16s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-rtl 30s infinite linear; }
   .ele-wrapper.rtl.speed2.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 16s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 30s infinite linear, shot-animation-rtl 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.rtl.speed2.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 16s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 30s infinite linear, shot-animation-rtl 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.rtl.speed2.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 16s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 30s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper.ltr.speed3 {
-  animation: ele-movement 1s infinite linear, ele-ahead-ltr 24s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-ltr 45s infinite linear; }
   .ele-wrapper.ltr.speed3.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 24s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 45s infinite linear, shot-animation-ltr 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.ltr.speed3.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 24s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 45s infinite linear, shot-animation-ltr 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.ltr.speed3.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 24s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 45s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper.rtl.speed3 {
-  animation: ele-movement 1s infinite linear, ele-ahead-rtl 24s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-rtl 45s infinite linear; }
   .ele-wrapper.rtl.speed3.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 24s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 45s infinite linear, shot-animation-rtl 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.rtl.speed3.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 24s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 45s infinite linear, shot-animation-rtl 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.rtl.speed3.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 24s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 45s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper.ltr.speed4 {
-  animation: ele-movement 1s infinite linear, ele-ahead-ltr 32s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-ltr 60s infinite linear; }
   .ele-wrapper.ltr.speed4.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 32s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 60s infinite linear, shot-animation-ltr 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.ltr.speed4.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 32s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 60s infinite linear, shot-animation-ltr 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.ltr.speed4.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 32s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 60s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper.rtl.speed4 {
-  animation: ele-movement 1s infinite linear, ele-ahead-rtl 32s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-rtl 60s infinite linear; }
   .ele-wrapper.rtl.speed4.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 32s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 60s infinite linear, shot-animation-rtl 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.rtl.speed4.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 32s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 60s infinite linear, shot-animation-rtl 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.rtl.speed4.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 32s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 60s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper.ltr.speed5 {
-  animation: ele-movement 1s infinite linear, ele-ahead-ltr 40s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-ltr 75s infinite linear; }
   .ele-wrapper.ltr.speed5.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 40s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 75s infinite linear, shot-animation-ltr 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.ltr.speed5.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 40s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 75s infinite linear, shot-animation-ltr 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.ltr.speed5.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-ltr 40s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-ltr 75s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper.rtl.speed5 {
-  animation: ele-movement 1s infinite linear, ele-ahead-rtl 40s infinite linear; }
+  animation: ele-movement 1s infinite linear, ele-ahead-rtl 75s infinite linear; }
   .ele-wrapper.rtl.speed5.shot.ka-rebound {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 40s infinite linear, shot-animation 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 75s infinite linear, shot-animation-rtl 3s cubic-bezier(0.2, -0.35, 0.91, 0.94) forwards !important;
     transform-origin: 0 100%; }
   .ele-wrapper.rtl.speed5.shot.ka-crash {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 40s infinite linear, shot-animation 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 75s infinite linear, shot-animation-rtl 5s cubic-bezier(0.18, 0.18, 0.91, 0.94) forwards !important; }
   .ele-wrapper.rtl.speed5.shot.ka-rotate {
-    animation: ele-movement 1s infinite linear, ele-ahead-rtl 40s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
+    animation: ele-movement 1s infinite linear, ele-ahead-rtl 75s infinite linear, shot-rotation 2s cubic-bezier(0.7, 0.27, 1, 1) forwards !important; }
 .ele-wrapper img {
   user-select: none; }
 .ele-wrapper.default img {
@@ -174,6 +174,8 @@ body.pause .ele-wrapper {
     left: -20%; }
   .ele-wrapper.rtl {
     right: -25%; }
+    .ele-wrapper.rtl img {
+      transform: scale(-1, 1); }
   .ele-wrapper img.eleImg {
     width: 156px; }
   .ele-wrapper.killable {
@@ -463,13 +465,20 @@ div[class^="ele-leg-"] {
   100% {
     opacity: 0;
     -webkit-transform: translate(150px, 800px) rotateZ(360deg) translate3D(0%, 60%, 0); } }
-@keyframes shot-animation {
+@keyframes shot-animation-ltr {
   0% {
     opacity: 1;
     transform: translate(0, 0px) rotateZ(0deg) translate3D(0%, 60%, 0); }
   100% {
     opacity: 0;
     transform: translate(150px, 800px) rotateZ(360deg) translate3D(0%, 60%, 0); } }
+@keyframes shot-animation-rtl {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0px) rotateZ(0deg) translate3D(0%, 60%, 0); }
+  100% {
+    opacity: 0;
+    transform: translate(-150px, 800px) rotateZ(-360deg) translate3D(0%, 60%, 0); } }
 @keyframes shot-rotation {
   0% {
     opacity: 1;
@@ -599,6 +608,8 @@ div[class^="ele-leg-"] {
 .lia img.eleImg {
   width: 120px;
   animation: ele-jump 1s infinite cubic-bezier(0, 0.31, 1, 1); }
+.lia.rtl img.eleImg {
+  animation: ele-jump-rtl 1s infinite cubic-bezier(0, 0.31, 1, 1); }
 
 @keyframes ele-jump {
   0% {
@@ -607,10 +618,19 @@ div[class^="ele-leg-"] {
     transform: rotate(19deg); }
   100% {
     transform: rotate(0deg); } }
+@keyframes ele-jump-rtl {
+  0% {
+    transform: rotate(0deg) scale(-1, 1); }
+  50% {
+    transform: rotate(-19deg) scale(-1, 1); }
+  100% {
+    transform: rotate(0deg) scale(-1, 1); } }
 .benjamin img.eleImg {
   width: 150px;
   margin-top: -600px;
   animation: shake 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite; }
+.benjamin.rtl img.eleImg {
+  animation: shake-rtl 2.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite; }
 
 @keyframes shake {
   0% {
@@ -619,6 +639,13 @@ div[class^="ele-leg-"] {
     transform: rotate(5deg); }
   100% {
     transform: rotate(-5deg); } }
+@keyframes shake-rtl {
+  0% {
+    transform: rotate(5deg) scale(-1, 1); }
+  50% {
+    transform: rotate(-5deg) scale(-1, 1); }
+  100% {
+    transform: rotate(5deg) scale(-1, 1); } }
 .hunter {
   width: 112px;
   bottom: 140px;
@@ -627,6 +654,8 @@ div[class^="ele-leg-"] {
     display: block;
     text-align: center;
     margin-bottom: -15px; }
+  .hunter.rtl .himage {
+    transform: scale(-1, 1); }
 
 .himage {
   width: 140px;
